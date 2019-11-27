@@ -59,7 +59,7 @@ function getDate(){
 
 
   // When the form is submitted
-  $('#chatmessage-button').click(function (e) {
+  $('#chatmessage-button').click(function () {
       // Retrieve the message from the user
       var message = $('#chatmessage-input').val();
       //Don't take unsafe inputs
@@ -81,8 +81,8 @@ function getDate(){
       	});
       }
     // Clear the input and focus it for a new message
-    e.target.reset();
-    $(e.target).find('input').focus();
+    // e.target.reset();
+    // $(e.target).find('input').focus();
   });
 
 
