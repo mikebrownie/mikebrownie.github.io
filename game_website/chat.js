@@ -59,8 +59,7 @@ function getDate(){
 
 
   // When the form is submitted
-  $('#chatmessage-button').click(function () {
-      // Avoid submitting it through HTTP
+  $('#chatmessage-button').click(function (e) {
       // Retrieve the message from the user
       var message = $('#chatmessage-input').val();
       //Don't take unsafe inputs
