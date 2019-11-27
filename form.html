@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      </head>
+      <div class="container">
+      <form>
+        <div class="jumbotron text-center" style="margin-bottom:15">
+        <h1 class="display-3">Add New Article</h1>
+        </div>
+        <div class="form-group">
+          <label for="title">
+            <h3>Article Title</h3>
+          </label>
+            <input type="title" class="form-control" id="inputTitle" placeholder="Enter a title that describes your article">
+          </div>
+
+          <div class="form-group">
+            <label for="name">
+              <h3>Author Name</h3>
+            </label>
+              <input type="name" class="form-control" id="inputName" placeholder="Enter your name">
+            </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col">
+                <input type="file" id="fileSub" name="fileName">
+                </div>
+              <div class="col">
+                <div class="dropdown">
+                  <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <span id="selected">Choose a Category</span><span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Other</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group shadow-textarea">
+                <label for="articleText">
+                  <h3>Article Text</h3>
+                </label>
+                <textarea class="form-control z-depth-1" id="articleText" rows="10" placeholder="Write something here..."></textarea>
+              </div>
+            <div class="form-row">
+              <div class="col-sm-8">
+                <label for="articleText">
+                  <h3>Select Tags</h3>
+                </label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                  <label class="form-check-label" for="inlineCheckbox1">Python</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                  <label class="form-check-label" for="inlineCheckbox2">C++</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                  <label class="form-check-label" for="inlineCheckbox3">x86-64</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                  <label class="form-check-label" for="inlineCheckbox3">Java</label>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label for="publicity">
+                  <h3>Publicity</h3>
+                </label>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-primary active">
+                    <input type="radio" name="public" id="public"> Public
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="radio" name="private" id="private"> Private
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="login">
+                <h3>Login to Finish Submitting</h3>
+              </label>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <input type="username" class="form-control" id="username" placeholder="Enter your username">
+              </div>
+              <div class="col">
+                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+              </div>
+            </div>
+            <div class"form-row">
+                <input type="radio" name="remember" id="remember"> Remember me
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Log in</button>
+          </form>
+        </div>
+      </html>
+    <script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+    </script>
+    <script>
+    //dropdown menu script
+    $('.dropdown-menu a').click(function(){
+    $('#selected').text($(this).text());
+    });
+    </script>
+    <script>
+    //login script
+    $("#btnLogin").click(function(event) {
+      var form = $("#formLogin")
+    </script>
