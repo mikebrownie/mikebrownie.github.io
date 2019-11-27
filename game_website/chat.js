@@ -76,7 +76,7 @@ $('form').submit(function (e) {
       //Send the message to the server
       docRef.add({
         // "user": "me",
-        "user": firebase.auth().currentUser.email(), //maybe change to username
+        "user": firebase.auth().currentUser.email, //maybe change to username
         "message": message,
         "date": getDate()
       })
