@@ -59,7 +59,7 @@ function getDate(){
 
 
   // When the form is submitted
-  $('form').submit(function (e) {
+  $('chatmessage').submit(function (e) {
       // Avoid submitting it through HTTP
       e.preventDefault();
       // Retrieve the message from the user
