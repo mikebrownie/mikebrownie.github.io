@@ -1,5 +1,8 @@
 // /public/javascript.js
 
+import firebase from 'firebase'
+require('firebase/auth')
+
 //TODO: add currentUser functionality :LINE 77
 //TODO: Implement security'
 //Organize firestore data
@@ -54,7 +57,6 @@ function getDate(){
   return today;
 }
 
-$('document').ready(function(){
   var database = firebase.firestore();
   var docRef = database.collection("messages");
   var user = firebase.auth().currentUser;
@@ -106,5 +108,3 @@ $('document').ready(function(){
 
       });
   });
-
-});
