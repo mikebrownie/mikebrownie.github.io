@@ -33,31 +33,34 @@
         </nav>
       </div>
       <div>
-      <div class="live-feed"><h1>Live Feed</h1>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="live-feed"><h1>Live Feed</h1>
+                <p><i>Messages will appear below</i></p>
+            </div>
+              <div class = "chatmessage">
+              <form>
+                <input type="text" class="form-control" id="chatmessage-input" placeholder="Say something nice.. ">
+                <button type="submit" class="form-control">Send</button>
+              </form>
+            </div>
+          </div>
 
-          <p><i>Messages will appear below</i></p>
+          <div class="col-lg-6">
+            <div class="webgl-content">
+              <div id="unityContainer" style="width: 960px; height: 600px"></div>
+              <div class="footer">
+                <div class="webgl-logo"></div>
+                <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+                <div class="title">CSCI-3308-Project</div>
+              </div>
+            </div>
+          </div>
       </div>
+    </div>
 
-        <!-- <form>
-          <input type="text" placeholder= />
-          <button >Send</button>
-        </br></br>
 
-        </form> -->
-        <div class = "chatmessage">
-        <form>
-          <input type="text" class="form-control" id="chatmessage-input" placeholder="Say something nice.. ">
-          <button type="submit" class="form-control">Send</button>
-        </form>
-      </div>
-      <div class="webgl-content">
-        <div id="unityContainer" style="width: 960px; height: 600px"></div>
-        <div class="footer">
-          <div class="webgl-logo"></div>
-          <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-          <div class="title">CSCI-3308-Project</div>
-        </div>
-      </div>
     </div>
 
     <div class = "userprofile">
