@@ -86,24 +86,26 @@ function getDate(){
       $('#chatmessage-input').focus();
       // $(e.target).find('input').focus();
     });
-  });
 
 
-  //Live updates and Message retrieval
-  docRef.orderBy("date", "asc")
-      .onSnapshot(function(snapshot) {
-      snapshot.docChanges().forEach(function(change) {
-        var data = change.doc.data();
-        var user = data.user;
-        var date = data.date.toDate();
-        var message = data.message;
-        //FORMATTING
-        var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
-        + message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
-        //APPEND TO HTML
-        $('.live-feed').append(formatted_message);
-        $(".live-feed").stop().animate({ scrollTop: $(".live-feed")[0].scrollHeight}, 1000);
+
+    //Live updates and Message retrieval
+    docRef.orderBy("date", "asc")
+        .onSnapshot(function(snapshot) {
+        snapshot.docChanges().forEach(function(change) {
+          var data = change.doc.data();
+          var user = data.user;
+          var date = data.date.toDate();
+          var message = data.message;
+          //FORMATTING
+          var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
+          + message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
+          //APPEND TO HTML
+          $('.live-feed').append(formatted_message);
+          $('.live-feed').stop().animate({ scrollTop: $(".live-feed")[0].scrollHeight}, 1000);
 
 
-      });
+        });
+    });
+
   });
