@@ -50,7 +50,7 @@ function isAlphaNumeric(str) {
 
 //To retrieve date
 function getDate(){
-  var today = new Date().toLocaleString();
+  var today = new firebase.firestore.Timestamp.fromDate(new Date());
   return today;
 }
 
