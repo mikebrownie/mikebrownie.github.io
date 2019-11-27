@@ -1,8 +1,5 @@
 // /public/javascript.js
 
-import firebase from 'firebase'
-require('firebase/auth')
-
 //TODO: add currentUser functionality :LINE 77
 //TODO: Implement security'
 //Organize firestore data
@@ -59,7 +56,6 @@ function getDate(){
 
   var database = firebase.firestore();
   var docRef = database.collection("messages");
-  var user = firebase.auth().currentUser;
 
 
   // When the form is submitted
@@ -75,7 +71,7 @@ function getDate(){
         //Send the message to the server
         docRef.add({
           // "user": "me",
-          "user": user.email, //maybe change to username
+          "user": firebase.auth().currentUser.email, //maybe change to username
           "message": message,
           "date": getDate()
         })
