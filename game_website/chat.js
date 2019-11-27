@@ -59,11 +59,11 @@ function getDate(){
 
 
   // When the form is submitted
-  $('chatmessage').submit(function (e) {
+  $('#chatmessage-button').submit(function (e) {
       // Avoid submitting it through HTTP
       e.preventDefault();
       // Retrieve the message from the user
-      var message = $(e.target).find('input').val();
+      var message = $('#chatmessage-input').val();
       //Don't take unsafe inputs
       if(!isAlphaNumeric(message)){
         alert("Please use only Alpha-numeric characters and . , ! ?")
