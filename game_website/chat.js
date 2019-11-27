@@ -82,8 +82,8 @@ function getDate(){
         	});
         }
       // Clear the input and focus it for a new message
-      $('#chatmessage-button').val("");
-      $('#chatmessage-button').focus();
+      $('#chatmessage-input').val("");
+      $('#chatmessage-input').focus();
       // $(e.target).find('input').focus();
     });
   });
