@@ -94,7 +94,7 @@ function getDate(){
       snapshot.docChanges().forEach(function(change) {
         var data = change.doc.data();
         var user = data.user;
-        var date = data.date;
+        var date = data.date.toDate();
         var message = data.message;
         //FORMATTING
         var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
