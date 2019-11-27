@@ -61,7 +61,7 @@ function getDate(){
 
 
 var database = firebase.firestore();
-var docRef = database.collection("messages").orderBy("date", Query.Direction.ASCENDING);
+var docRef = database.collection("messages");
 
 // When the form is submitted
 $('form').submit(function (e) {
