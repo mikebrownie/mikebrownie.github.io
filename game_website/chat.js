@@ -59,30 +59,32 @@ function getDate(){
 
 
   // When the form is submitted
-  $('#chatmessage-button').click(function () {
-      // Retrieve the message from the user
-      var message = $('#chatmessage-input').val();
-      //Don't take unsafe inputs
-      if(!isAlphaNumeric(message)){
-        alert("Please use only Alpha-numeric characters and . , ! ?")
-      }else{
-        //Send the message to the server
-        docRef.add({
-          // "user": "me",
-          "user": firebase.auth().currentUser.email, //maybe change to username
-          "message": message,
-          "date": getDate()
-        })
-        .then(function(docRef){
-      			//console.log("document written with ID: " + docRef.id);
-      	})
-      	.catch(function(error){
-      			console.log(error);
-      	});
-      }
-    // Clear the input and focus it for a new message
-    // e.target.reset();
-    // $(e.target).find('input').focus();
+  $(document).ready(function() {
+    $('#chatmessage-button').click(function () {
+        // Retrieve the message from the user
+        var message = $('#chatmessage-input').val();
+        //Don't take unsafe inputs
+        if(!isAlphaNumeric(message)){
+          alert("Please use only Alpha-numeric characters and . , ! ?")
+        }else{
+          //Send the message to the server
+          docRef.add({
+            // "user": "me",
+            "user": firebase.auth().currentUser.email, //maybe change to username
+            "message": message,
+            "date": getDate()
+          })
+          .then(function(docRef){
+        			//console.log("document written with ID: " + docRef.id);
+        	})
+        	.catch(function(error){
+        			console.log(error);
+        	});
+        }
+      // Clear the input and focus it for a new message
+      // e.target.reset();
+      // $(e.target).find('input').focus();
+    });
   });
 
 
