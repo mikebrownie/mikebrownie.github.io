@@ -46,11 +46,6 @@ function isAlphaNumeric(str) {
   return true;
 };
 
-// When we receive a message
-// it will be like { user: 'username', message: 'text' }
-// socket.on('message', function (data) {
-//   $('.chat').append('<p><strong>' + data.user + '</strong>: ' + data.message + '</br>' + '<sup>Sent on ' + data.date + '</sup>' + '</p>');
-// });
 
 
 //To retrieve date
@@ -62,6 +57,8 @@ function getDate(){
 
 var database = firebase.firestore();
 var docRef = database.collection("messages");
+var user = firebase.auth().currentUser;
+
 
 // When the form is submitted
 $('form').submit(function (e) {
@@ -76,7 +73,7 @@ $('form').submit(function (e) {
       //Send the message to the server
       docRef.add({
         // "user": "me",
-        "user": firebase.auth().currentUser.email, //maybe change to username
+        "user": user.email, //maybe change to username
         "message": message,
         "date": getDate()
       })
@@ -91,25 +88,6 @@ $('form').submit(function (e) {
   e.target.reset();
   $(e.target).find('input').focus();
 });
-
-
-//Retrieve messages
-// docRef.get().then(function(querySnapshot) {
-//     querySnapshot.forEach(function(doc) {
-//         //GET DATA
-//         //console.log(doc.data())
-//         var data = doc.data();
-//         var user = data.user;
-//         var date = data.date;
-//         var message = data.message;
-//         //FORMATTING
-//         var formatted_message = '<p><strong>' + user + '</strong>: '
-//         + message + '</br>' + '<sup>Sent on ' + date + '</sup>' + '</p>';
-//
-//         //APPEND TO HTML
-//         $('.chat').append(formatted_message);
-//       });
-// });
 
 
 //Live updates and Message retrieval
@@ -128,16 +106,3 @@ docRef
 
     });
 });
-// //GET DATA
-// console.log(doc.data())
-// var data = doc.data();
-// var user = data.user;
-// var date = data.date;
-// var message = data.message;
-// //FORMATTING
-// var formatted_message = '<p><strong>' + user + '</strong>: '
-// + message + '</br>' + '<sup>Sent on ' + data + '</sup>' + '</p>';
-//
-// //APPEND TO HTML
-// $('.chat').append(formatted_message);
-// });
