@@ -54,55 +54,57 @@ function getDate(){
   return today;
 }
 
-
-var database = firebase.firestore();
-var docRef = database.collection("messages");
-var user = firebase.auth().currentUser;
-
-
-// When the form is submitted
-$('form').submit(function (e) {
-    // Avoid submitting it through HTTP
-    e.preventDefault();
-    // Retrieve the message from the user
-    var message = $(e.target).find('input').val();
-    //Don't take unsafe inputs
-    if(!isAlphaNumeric(message)){
-      alert("Please use only Alpha-numeric characters and . , ! ?")
-    }else{
-      //Send the message to the server
-      docRef.add({
-        // "user": "me",
-        "user": user.email, //maybe change to username
-        "message": message,
-        "date": getDate()
-      })
-      .then(function(docRef){
-    			//console.log("document written with ID: " + docRef.id);
-    	})
-    	.catch(function(error){
-    			console.log(error);
-    	});
-    }
-  // Clear the input and focus it for a new message
-  e.target.reset();
-  $(e.target).find('input').focus();
-});
+$('document').ready(function(){
+  var database = firebase.firestore();
+  var docRef = database.collection("messages");
+  var user = firebase.auth().currentUser;
 
 
-//Live updates and Message retrieval
-docRef
-    .onSnapshot(function(snapshot) {
-    snapshot.docChanges().forEach(function(change) {
-      var data = change.doc.data();
-      var user = data.user;
-      var date = data.date;
-      var message = data.message;
-      //FORMATTING
-      var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
-      + message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
-      //APPEND TO HTML
-      $('.live-feed').append(formatted_message);
+  // When the form is submitted
+  $('form').submit(function (e) {
+      // Avoid submitting it through HTTP
+      e.preventDefault();
+      // Retrieve the message from the user
+      var message = $(e.target).find('input').val();
+      //Don't take unsafe inputs
+      if(!isAlphaNumeric(message)){
+        alert("Please use only Alpha-numeric characters and . , ! ?")
+      }else{
+        //Send the message to the server
+        docRef.add({
+          // "user": "me",
+          "user": user.email, //maybe change to username
+          "message": message,
+          "date": getDate()
+        })
+        .then(function(docRef){
+      			//console.log("document written with ID: " + docRef.id);
+      	})
+      	.catch(function(error){
+      			console.log(error);
+      	});
+      }
+    // Clear the input and focus it for a new message
+    e.target.reset();
+    $(e.target).find('input').focus();
+  });
 
-    });
+
+  //Live updates and Message retrieval
+  docRef
+      .onSnapshot(function(snapshot) {
+      snapshot.docChanges().forEach(function(change) {
+        var data = change.doc.data();
+        var user = data.user;
+        var date = data.date;
+        var message = data.message;
+        //FORMATTING
+        var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
+        + message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
+        //APPEND TO HTML
+        $('.live-feed').append(formatted_message);
+
+      });
+  });
+
 });
