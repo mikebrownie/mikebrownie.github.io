@@ -82,7 +82,8 @@ function getDate(){
         	});
         }
       // Clear the input and focus it for a new message
-      // e.target.reset();
+      message.val("");
+      message.focus();
       // $(e.target).find('input').focus();
     });
   });
