@@ -90,7 +90,7 @@ function getDate(){
 
 
   //Live updates and Message retrieval
-  docRef
+  docRef.orderBy("date", "asc")
       .onSnapshot(function(snapshot) {
       snapshot.docChanges().forEach(function(change) {
         var data = change.doc.data();
