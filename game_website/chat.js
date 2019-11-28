@@ -1,5 +1,7 @@
 // /public/javascript.js
 
+
+//TODO: fix autoscroll
 //TODO: add currentUser functionality :LINE 77
 //TODO: Implement security'
 //Organize firestore data
@@ -54,10 +56,6 @@ function getDate(){
   return today;
 }
 
-//autoScroll
-function scrollToBottom() {
-  $('#live-feed').scrollTop = $('#live-feed').scrollHeight;
-}
 
   var database = firebase.firestore();
   var docRef = database.collection("messages");
@@ -107,7 +105,6 @@ function scrollToBottom() {
           + message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
           //APPEND TO HTML
           $('.live-feed').append(formatted_message);
-          scrollToBottom();
         });
     });
 
