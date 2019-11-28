@@ -54,6 +54,11 @@ function getDate(){
   return today;
 }
 
+//autoScroll
+function scrollToBottom() {
+  $('#live-feed').scrollTop = $('#live-feed').scrollHeight;
+}
+
   var database = firebase.firestore();
   var docRef = database.collection("messages");
 
@@ -102,9 +107,7 @@ function getDate(){
           + message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
           //APPEND TO HTML
           $('.live-feed').append(formatted_message);
-          $('#live-feed').stop().animate({ scrollTop: $("#live-feed")[0].scrollHeight}, 1000);
-
-
+          scrollToBottom();
         });
     });
 
