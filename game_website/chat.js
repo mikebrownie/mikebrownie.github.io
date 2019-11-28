@@ -102,7 +102,7 @@ function getDate(){
           + message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
           //APPEND TO HTML
           $('.live-feed').append(formatted_message);
-          $('.live-feed').animate({ scrollTop: $(".live-feed")[0].scrollHeight}, 1000); //add stop() for fast Messages
+          $('#live-feed').stop().animate({ scrollTop: $("#live-feed")[0].scrollHeight}, 1000);
 
 
         });
