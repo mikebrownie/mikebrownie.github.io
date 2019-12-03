@@ -56,6 +56,9 @@ $('document').ready(function(){
 		$('#scoreboard-modal').modal('show');
 	})
 
+	var database = firebase.firestore();
+  var docRef = database.collection("messages");
+
 	// Message retrieval
 	docRef.orderBy("date", "asc")
 			.onSnapshot(function(snapshot) {
@@ -63,7 +66,8 @@ $('document').ready(function(){
 				var data = change.doc.data();
 				var user = data.user;
 				var date;
-				date = data.date.toDate();
+				if (data.date != null) //give server time to write new date
+					date = data.date.toDate();
 				var message = data.message;
 				//FORMATTING
 				var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
