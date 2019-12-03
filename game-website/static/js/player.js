@@ -51,25 +51,6 @@ $('document').ready(function(){
 	});
 
 
-	var database = firebase.firestore();
-	var docRef = database.collection("livefeed");
-
-	$("#chatmessage-button").on("click", function(){
-		var message = document.getElementById('chatmessage-input').value;
-		var date = new Date();
-		console.log(message);
-		database.collection("messages").add({
-			"message": message,
-			"date": date.getDate(),
-			"user": firebase.auth().currentUser.email
-		})
-		.then(function(docRef){
-			console.log("document written with ID: " + docRef.id);
-		})
-		.catch(function(error){
-			console.log(error);
-		});
-	});
 
 	$('#scoreboard-button').on('click', function(){
 		console.log('clicked');
