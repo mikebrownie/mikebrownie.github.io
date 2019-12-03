@@ -52,7 +52,7 @@ function isAlphaNumeric(str) {
 
 //To retrieve date
 function getDate(){
-  var today = new firebase.firestore.Timestamp.fromDate(new Date());
+  var today = new firebase.firestore.FieldValue.serverTimestamp();
   return today;
 }
 
