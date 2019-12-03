@@ -66,10 +66,8 @@ $('document').ready(function(){
 				var data = change.doc.data();
 				var user = data.user;
 				var date;
-				if (data.date != null) //give server time to write new date
+				//if (data.date != null) //give server time to write new date
 					date = data.date.toDate();
-				// else
-				// 	date = new Date();
 				var message = data.message;
 				//FORMATTING
 				var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
