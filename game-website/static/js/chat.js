@@ -107,7 +107,7 @@ function getDate(){
 					date = new Date();
 				var message = data.message;
 				//FORMATTING
-				var formatted_message = '<img src=' + firebase.auth().currentUser.photoURL +' width="100" height="75" alt="profile icture"> </div><p><strong>' + user + ':  ' + '</strong>'
+				var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
 				+ message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
 				//APPEND TO HTML
 				$('.live-feed').append(formatted_message);
