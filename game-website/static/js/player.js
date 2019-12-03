@@ -60,10 +60,10 @@ $('document').ready(function(){
   var docRef = database.collection("messages");
 
 	// Message retrieval
-	docRef.orderBy("date", "asc")
-			.get()
+	docRef.orderBy("date", "asc").where("date" != null)
 			.onSnapshot(function(snapshot) {
 			snapshot.docChanges().forEach(function(change) {
+				if (!doc.metadata.hasPendingWrites){
 				var data = change.doc.data();
 				var user = data.user;
 				var date = data.date;
@@ -74,6 +74,7 @@ $('document').ready(function(){
 				+ message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
 				//APPEND TO HTML
 				$('.live-feed').append(formatted_message);
+				}
 			});
 	});
 
