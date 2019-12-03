@@ -65,8 +65,11 @@ $('document').ready(function(){
 			snapshot.docChanges().forEach(function(change) {
 				var data = change.doc.data();
 				var user = data.user;
-				var date = data.date;
-				date = date.toDate();
+				var date;
+				if (date.date != null) //give server time to write new date
+					date = data.date;
+				else
+					date = new Date();
 				var message = data.message;
 				//FORMATTING
 				var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
@@ -74,8 +77,6 @@ $('document').ready(function(){
 				//APPEND TO HTML
 				$('.live-feed').append(formatted_message);
 			});
-	}, function(error){
-			console.log("error - date not written to database");
 	});
 
 
