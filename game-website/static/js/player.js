@@ -61,6 +61,7 @@ $('document').ready(function(){
 
 	// Message retrieval
 	docRef.orderBy("date", "asc")
+			.get()
 			.onSnapshot(function(snapshot) {
 			snapshot.docChanges().forEach(function(change) {
 				var data = change.doc.data();
