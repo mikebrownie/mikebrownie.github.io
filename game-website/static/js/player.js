@@ -67,7 +67,7 @@ $('document').ready(function(){
 				var user = data.user;
 				var date;
 				if (date.date != null) //give server time to write new date
-					date = data.date;
+					date = data.date.toDate();
 				else
 					date = new Date();
 				var message = data.message;
