@@ -51,7 +51,6 @@ $('document').ready(function(){
 	});
 
 
-
 	$('#scoreboard-button').on('click', function(){
 		console.log('clicked');
 		$('#scoreboard-modal').modal('show');
