@@ -66,7 +66,7 @@ $('document').ready(function(){
 				var data = change.doc.data();
 				var user = data.user;
 				var date;
-				if (date.date != null) //give server time to write new date
+				if (data.date != null) //give server time to write new date
 					date = data.date.toDate();
 				else
 					date = new Date();
