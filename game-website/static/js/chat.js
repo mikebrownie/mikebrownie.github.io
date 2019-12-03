@@ -101,7 +101,7 @@ function getDate(){
           var data = change.doc.data();
           var user = data.user;
           var ts = data.date
-          if(ts!=NULL) //don't take this out
+          if(ts!=null) //don't take this out
             var date = ts.toDate();
           var message = data.message;
           //FORMATTING
