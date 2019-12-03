@@ -78,7 +78,7 @@ function getDate(){
             "date": getDate()
           })
           .then(function(docRef){
-        			//console.log("document written with ID: " + docRef.id);
+        			console.log("document written with ID: " + docRef.id);
         	})
         	.catch(function(error){
         			console.log(error);
