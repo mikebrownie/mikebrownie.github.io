@@ -73,12 +73,11 @@ $('document').ready(function(){
 				+ message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
 				//APPEND TO HTML
 				$('.live-feed').append(formatted_message);
-			}function(error) {
-
 			});
-
-        //...
-    });
+	}, function(error){
+			console.log("error - date not written to database");
 	});
+
+
 
 });
