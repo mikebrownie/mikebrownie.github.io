@@ -61,7 +61,7 @@ function getDate(){
   var docRef = database.collection("messages");
 
 
-  // When the form is submitted
+  // When the form is submitted send message to firebase
   $(document).ready(function() {
     $('#chatmessage-button').click(function () {
         // Retrieve the message from the user
@@ -90,27 +90,6 @@ function getDate(){
       // $(e.target).find('input').focus();
 
       $(".live-feed").animate({ scrollTop: $('.live-feed').height() }, "slow");
-    });
-
-
-
-    //Live updates and Message retrieval
-    docRef.orderBy("date", "asc")
-        .onSnapshot(function(snapshot) {
-        snapshot.docChanges().forEach(function(change) {
-          var data = change.doc.data();
-          var user = data.user;
-          var ts = data.data
-          if(ts!=null){ //don't take this out please
-            var date = ts.toDate();
-            var message = data.message;
-            //FORMATTING
-            var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
-            + message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
-            //APPEND TO HTML
-            $('.live-feed').append(formatted_message);
-          }
-        });
     });
 
   });

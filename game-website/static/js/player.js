@@ -56,4 +56,20 @@ $('document').ready(function(){
 		$('#scoreboard-modal').modal('show');
 	})
 
+	// Message retrieval
+	docRef.orderBy("date", "asc")
+			.onSnapshot(function(snapshot) {
+			snapshot.docChanges().forEach(function(change) {
+				var data = change.doc.data();
+				var user = data.user;
+				var ts = data.date.toDate();
+				var message = data.message;
+				//FORMATTING
+				var formatted_message = '<p><strong>' + user + ':  ' + '</strong>'
+				+ message + '</br>' + '<span class = "live-feed-time">Sent on ' + date + '</span>' + '</p>';
+				//APPEND TO HTML
+				$('.live-feed').append(formatted_message);
+			});
+	});
+
 });
