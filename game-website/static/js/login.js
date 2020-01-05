@@ -1,8 +1,11 @@
 let newAccount=false;
 let displayname = "";
 let photourl = "";
+let valid = true
 
 $('document').ready(function(){
+
+	$('.required').append('<span class = "asterisk">*</span>');
 
 	//make login box slide in from right
 	$('.body-right').css("transform", "translateX(0)");
@@ -31,6 +34,15 @@ $('document').ready(function(){
 
 	//create new user in database when sign up button is clicked
 	$('#signup-button').on('click', function(){
+		$('.signup-error-message').empty();
+		if ((!$('#signup-username').val())||(!$('#signup-password').val())||(!$('#signup-confirmpassword').val())||(!$('#signup-displayname').val())){
+			valid = false;
+			$('.signup-error-message').append('<div>Fill out required fields</div>');
+		}
+		else{
+			valid = true;
+		}
+		if (valid){
 		newAccount = true;
 		$('.signup-error-message').empty();
 		let email = $('.signup-container #signup-username').val();
@@ -60,6 +72,7 @@ $('document').ready(function(){
 			}
 		  console.log(error);
 		});
+		}
 	});
 
 	//log in when login button is clicked then redirect to game page
@@ -95,14 +108,14 @@ $('document').ready(function(){
                   }).then(function() {
 
                     console.log('profile updated successfully');
-                   	window.location = "webGL/index.html";
+                   	window.location = "finalbuild/index.html";
 
                   }, function(error) {
                     console.log(error);
                   });
               }
               else{
-              		window.location = "webGL/index.html";
+              		window.location = "finalbuild/index.html";
               }
 	  }
 	});

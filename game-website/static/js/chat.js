@@ -33,7 +33,8 @@
 
 //https://stackoverflow.com/questions/2794137/sanitizing-user-input-before-adding-it-to-the-dom-in-javascript
 
-//Sanitizing user input
+window.alert = function() {};
+
 function isAlphaNumeric(str) {
   var code, i, len;
 
@@ -75,21 +76,22 @@ function getDate(){
             // "user": "me",
             "user": firebase.auth().currentUser.displayName, //maybe change to username
             "message": message,
-            "date": getDate()
+            "date": getDate(),
+            "photoURL": firebase.auth().currentUser.photoURL
           })
           .then(function(docRef){
-        			console.log("document written with ID: " + docRef.id);
-        	})
-        	.catch(function(error){
-        			console.log(error);
-        	});
+        console.log("document written with ID: " + docRef.id);
+        })
+        .catch(function(error){
+        console.log(error);
+        });
         }
       // Clear the input and focus it for a new message
       $('#chatmessage-input').val("");
       $('#chatmessage-input').focus();
       // $(e.target).find('input').focus();
 
-      $(".live-feed").animate({ scrollTop: $('.live-feed').height() }, "slow");
+      $(".live-feed").animate({ scrollTop: 100000000000 }, "slow");
     });
 
   });
