@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>CSCI 3308 Lab 1</title>
+    <title>Brick Breaker</title>
     <!-- Bootstrap core CSS & JS -->
 	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
@@ -20,9 +20,10 @@
 			<div class="container-fluid">
 			  <div class="row">
 				<div class="col-10">
-					<h1 class="display-4">Lab 1 - Initial System Setup</h1>
-					<p class="lead">Today, we will be setting up your website that you will be using throughout this camp.
-					<b>When you are finished with the lab, show your work to a sensei.</b></p>
+					<h1 class="display-4">Brick Breaker</h1>
+					<p class="lead">Today, we will add in some mods to Brick Bricker!
+          <br>
+					<b>After each section, check your work with a sensei!</b></p>
 				</div>
 				<div class="col-2">
 					<table class="table">
@@ -30,7 +31,7 @@
 							<th class="h5" style="text-align:center">Est. Time  &#x023F1;</th>
 						</tr>
 						<tr>
-							<td class="h5" style="text-align:center"><span id="eta">150</span> minutes</td>
+							<td class="h5" style="text-align:center"><span id="eta">60</span> minutes</td>
 						</tr>
 					</table>
 				</div>
@@ -43,202 +44,312 @@
 
 			<div class="card card-body" id="step1">
 				<div class="stepLine">
-					<p class="alignleft h5">1. Set up github</p>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
-					<p class="alignright h5">(<span class="time" id="time2">10</span> Minutes)</p>
+					<p class="alignleft h5">1. Add a start screen</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time1">10</span> Minutes)</p>
 				</div>
-				<div class="collapse" id="multiCollapseExample2">
+				<div class="collapse" id="multiCollapseExample1">
 					<dl>
-						<dt>1. Sign up for Github</dt>
-						<dd>If you do not already have an account, create one at <a href="https://github.com/">Github</a></dd>
-						<dt>2. Create a New Github Repo</dt>
+						<dt>1. Navigate to <a target="_blank" href="https://codepen.io/">CodePen.io</a></dt>
+						<dd>If you do not already have an account, create one at <a target="_blank" href="https://codepen.io/">CodePen.io</a>
+						<dt>2. Login</dt>
 						<dd>
 							<div class="row">
-								<div class="col-4">
-									Click the "+" in the upper right corner on your github page and select "New repository"</li>
+								<div class="col-6">
+									<li>On the left side, click Dashboard to get to your pens</li>
+                  <li>Now click your Brick Breaker game</li>
+                  <li>Click on "View in Editor" at the top right of the pop-up window</li>
 								</div>
-								<div class="col-8">
-									<img src="img/git_setup_1.PNG">
-								</div>
-							</div>
-							<br>
-							<div class="row">
-								<div class="col-4">
-									Set your new repository's information: <br>
-									<b>Owner:</b> your github username (default)<br>
-									<b>Repository name:</b> lab_1_3308 <br>
-									<b>Description:</b> My first github repo! <br>
-									<b>Public or Private:</b> Either option here is fine, now that Github provides unlimited private repos for free.<br>
-									<b>Initialize with Readme:</b>This is also optional, but go ahead and have github at a README file to your repo <br>
-								</div>
-								<div class="col-8">
-									<img src="img/git_setup_2.PNG" height="452px" width="559px">
-								</div>
-							</div>
-							<br>
-							<div class="row">
-								<div class="col-4">
-									Copy your new repository's https address so you can clone it locally.
-								</div>
-								<div class="col-8">
-									<img src="img/git_setup_3.PNG">
-								</div>
-							</div>
+                <div class="col-4">
+                  <img height=80% src="img/dashboard.PNG">
+                </div>
+            </dd>
+					</dl>
+				</div>
+			</div>
+    </div>
+
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">2. Adding a Start screen</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">15</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample2">
+        </br><div class="row">
+            <h2 style ="text-align: center;">Press (ctrl+s) after EVERY STEP to save.</h2>
+          </div></br>
+          <dl>
+
+						<dt>1. Event Listeners</dt></br>
+            <dd><b>Event listeners</b> are used in JavaScript to listen for input from the user</dd>
+            <dd> by using <b>Event Listeners</b>, we can react to actions the from the user.</dd>
+            <dd>To move the paddle, we used <b>Event Listeners</b> to listen for when the user presses the left and right arrow keys</dd>
+						<dt>Lets add in an event listener for clicks</dt>
+            <dd><i>We will later use a click to start the game!</i></dd>
+            <dd>Add this code below the keydown listeners</dd>
+						<dd>
+							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">document.addEventListener("click", mouseClickHandler, false);
+</code></pre>
 						</dd>
+						<dt>3. <u>The Skin:</u> Add this code to the CSS section to color the background light gray</dt>
+						<dd>
+							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-css">canvas { background: #eee; }</code></pre>
+						</dd>
+            <dt>4. Now, you get to choose the color of the background for your game!</dt>
+              <dd>
+                <div class="row">
+                  <div class="col-6">
+                    <ul>
+                      <li><a target="_blank" href="https://www.w3schools.com/colors/colors_picker.asp">Click here</a> to visit our color picker, and pick your favorite.</li>
+                      <li>One you find it, copy (ctrl+c) the <b>hex code</b>.</li>
+                      <li>Return to the CodePen page, and replace "(#eee)" with your new hex color value</br>
+                      <i>Tip: You can highlight "#eee" with the cursor and press (ctrl+v) to quickly do this</i></li>
+                    </ul>
+                  </div>
+                  <div class="col-6">
+                  </br>
+                    <h4>Example Hex Code:</h4>
+                    <figure>
+                      <img src="img/hex.PNG">
+                      <figcaption><b>Hex code is used to represent colors in a way the computer understand</b></figcaption>
+                    </figure>
+                  </div>
+                <div>
+                <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-css">canvas { background: NEW_COLOR_HERE; }</code></pre>
+              </dd>
+              <dt>5. Press (ctrl+s) to save and see your new background!</dt></br>
+                <figure>
+                  <img src="img/new_canvas.PNG">
+                  <figcaption><b>Make sure you see your color after saving!</b></figcaption>
+                </figure>
+              </dd>
+
+						<dt>6. <u>The Motion:</u> Now, add ALL of this JavaScript code to the Javascript section </dt>
+						<dd>
+						 <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">
+////VARIABLES////
+var score = 0;
+var lives = 3;
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+//Size of ball
+var ballRadius = 10;
+
+//Ball posistion
+var x = canvas.width/2;
+var y = canvas.height-30;
+
+//Ball speed
+var dx = 2;
+var dy = -2;
+
+//Paddle and movement
+var paddleHeight = 10;
+var paddleWidth = 75;
+var paddleX = (canvas.width-paddleWidth)/2;
+var rightPressed = false; //for event listeners
+var leftPressed = false; //for event listeners
+
+//Brick variables
+var brickRowCount = 5;
+var brickColumnCount = 3;
+var brickWidth = 75;
+var brickHeight = 20;
+var brickPadding = 10;
+var brickOffsetTop = 30;
+var brickOffsetLeft = 30;
+var bricks = [];
+
+for(var c=0; c < brickColumnCount; c++) {
+  bricks[c] = [];
+  for(var r=0; r < brickRowCount; r++) {
+    bricks[c][r] = { x: 0, y: 0, status: 1 };
+  }
+}
+////END VARIABLES////
+
+////EVENT LISTENERS////
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+// document.addEventListener("mousemove", mouseMoveHandler, false);
+
+function keyDownHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = true;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = true;
+    }
+}
+
+function keyUpHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = false;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = false;
+    }
+}
+
+function mouseMoveHandler(e) {
+  var relativeX = e.clientX - canvas.offsetLeft;
+  if(relativeX > 0 && relativeX < canvas.width) {
+    paddleX = relativeX - paddleWidth/2;
+  }
+}
+function collisionDetection() {
+  for(var c=0; c < brickColumnCount; c++) {
+    for(var r=0; r < brickRowCount; r++) {
+      var b = bricks[c][r];
+      if(b.status == 1) {
+        if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+          dy = -dy;
+          b.status = 0;
+          score++;
+          if(score == brickRowCount*brickColumnCount) {
+            alert("YOU WIN, CONGRATS!");
+            document.location.reload();
+          }
+        }
+      }
+    }
+  }
+}
+////END EVENT HANDLERS////
+
+////CANVAS////
+function drawBall() {
+  ctx.beginPath();
+  ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+  ctx.fillStyle = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
+}
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+  ctx.fillStyle = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
+}
+function drawBricks() {
+  for(var c=0; c < brickColumnCount; c++) {
+    for(var r=0; r < brickRowCount; r++) {
+      if(bricks[c][r].status == 1) {
+        var brickX = (r*(brickWidth+brickPadding))+brickOffsetLeft;
+        var brickY = (c*(brickHeight+brickPadding))+brickOffsetTop;
+        bricks[c][r].x = brickX;
+        bricks[c][r].y = brickY;
+        ctx.beginPath();
+        ctx.rect(brickX, brickY, brickWidth, brickHeight);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
+  }
+}
+function drawScore() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText("Score: "+score, 8, 20);
+}
+function drawLives() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawBricks();
+  drawBall();
+  drawPaddle();
+  drawScore();
+  drawLives();
+  collisionDetection();
+
+  if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+    dx = -dx;
+  }
+  if(y + dy < ballRadius) {
+    dy = -dy;
+  }
+  else if(y + dy > canvas.height-ballRadius) {
+    if(x > paddleX && x < paddleX + paddleWidth) {
+      dy = -dy;
+    }
+    else {
+      lives--;
+      if(!lives) {
+        alert("GAME OVER");
+        document.location.reload();
+      }
+      else {
+        x = canvas.width/2;
+        y = canvas.height-30;
+        dx = 3;
+        dy = -3;
+        paddleX = (canvas.width-paddleWidth)/2;
+      }
+    }
+  }
+
+  if(rightPressed && paddleX < canvas.width-paddleWidth) {
+    paddleX += 7;
+  }
+  else if(leftPressed && paddleX > 0) {
+    paddleX -= 7;
+  }
+
+  x += dx;
+  y += dy;
+  requestAnimationFrame(draw);
+}
+////END CANVAS////
+
+draw();
+              </code></pre>
+						</dd>
+						<dt>6. The game is ready for playing!</dt>
+						<dd>
+              Make sure you save before moving on.
+						</dd>
+
 					</dl>
 				</div>
 			</div>
 
 			<div class="card card-body" id="step3">
 				<div class="stepLine">
-					<p class="alignleft h5">3. Setup Git (version control software)</p>
+					<p class="alignleft h5">3. Lets try it out!</p>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
 					<p class="alignright h5">(<span class="time" id="time3">15</span> Minutes)</p>
 				</div>
 				<div class="collapse" id="multiCollapseExample3">
 					<dl>
-						<dt>1. Install Git (a version control tool)</dt>
+						<dt>1. Try out the game</dt>
 						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> sudo apt-get install git</code></pre>
+              <ul>
+  							<li>Take a break from all the hard work, and try out the game</li>
+                <li>As you play, see if you can think of ways the game can be better</li>
+                <li>Or, try thinking of problems with the game, and what can be done to make it better</li>
+              </ul>
+              <div class="form-group">
+                <label for="notes"><i>Aim for atleast 5 ideas...</i><b>Get Creative!</b></label>
+                <textarea class="form-control rounded-0" id="notes" rows="10"></textarea>
+              </div>
 						</dd>
-						<dt>2. Set your git username to match your github account</dt>
+						<dt>2. Brain Storm</dt>
 						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">git config --global user.name "myUserName"</code></pre>
-						</dd>
-						<dt>3. Verify your git username was updated</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">git config --global user.name</code></pre>
-						</dd>
-						<dt>4. Set your git email to match your github account</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">git config --global user.email "myUserName@gmail.com"</code></pre>
-						</dd>
-						<dt>5. Verify your git email was updated</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">git config --global user.email</code></pre>
-						</dd>
-						<dt>6. Clone your github repo (created in step 2)</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">git clone https://github.com/myUserName/lab_1_3308.git</code></pre>
-						</dd>
-						<dt>7. Create a new file (to test your connection)</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">nano test.txt</code></pre>
-							<ol>
-								<li>Switch to insert mode (press "i") to add text</li>
-								<li>Add any text you wish (This is a test!!!)</li>
-								<li>To save & quit, press ctrl (to change mode) and type wq(write & quite) and hit enter</li>
-							</ol>
-						</dd>
-						<dt>8. Add & Commit your changes to the repo</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">git add .
-git commit -m "Commit message goes here"
-git push</code></pre>
-						</dd>
-					</dl>
-				</div>
-			</div>
-
-			<div class="card card-body" id="step4">
-				<div class="stepLine">
-					<p class="alignleft h5">4. Install & Test PostgreSQL</p>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)" >Mark Complete</button>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
-					<p class="alignright h5">(<span class="time" id="time4">15</span> Minutes)</p>
-				</div>
-				<div class="collapse" id="multiCollapseExample4">
-					<dl>
-						<dt>1. Install PostgreSQL</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> sudo apt-get install postgresql postgresql-contrib</code></pre>
-						</dd>
-						<dt>2. Start PostgreSQL</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> service postgresql start</code></pre>
-						</dd>
-						<dt>3. Switch to the postgres user account</dt>
-						<dd>
-							During the installation process, PostgreSQL created a new user account named postgres.  You'll be using this user account for most of your database interactions.
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> sudo -u postgres psql</code></pre>
-						</dd>
-						<dt>4. Create a practice database</dt>
-						<dd>
-							<pre class="command-line" data-prompt="postgres=#"><code  class="language-bash"> create database practiceDB;</code></pre>
-						</dd>
-						<dt>5. Enter the practice database</dt>
-						<dd>
-							<pre class="command-line" data-prompt="postgres=#"><code  class="language-bash"> \c practicedb;</code></pre>
-						</dd>
-						<dt>6. Create a practice table</dt>
-							<dd>Copy the following code into psql terminal
-								<pre class="command-line" data-prompt="practicedb=#"><code  class="language-sql">create table if not exists store(id serial, sname varchar(40) not null, qty integer not null, price float not null, primary key(id));
-insert into store (sname, qty, price) values ('apple', 10, 1),('pear', 5, 2),('banana', 10, 1.5),('lemon', 100, 0.1),('orange', 50, 0.2);</code></pre>
-							</dd>
-						<dt>7. Test your table</dt>
-						<dd>
-							<pre class="command-line" data-prompt="practicedb=#" data-filter-output="(out)"><code  class="language-bash"> select * from store;
-(out)id | sname  | qty | price
-(out)---+--------+-----+-------
-(out) 1 | apple  |  10 |     1
-(out) 2 | pear   |   5 |     2
-(out) 3 | banana |  10 |   1.5 </code></pre>
-
-						</dd>
-						<dt>8. Exit</dt>
-						<dd>
-							<pre class="command-line" data-prompt="postgres=#"><code  class="language-bash"> \q</code></pre>
-						</dd>
-					</dl>
-				</div>
-			</div>
-
-			<div class="card card-body" id="step5">
-				<div class="stepLine">
-					<p class="alignleft h5">5. Install & Test Node.js</p>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)" >Mark Complete</button>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
-					<p class="alignright h5">(<span class="time" id="time5">10</span> Minutes)</p>
-				</div>
-				<div class="collapse" id="multiCollapseExample5">
-					<dl>
-						<dt>1.Install curl (a data transfer tool)</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> sudo apt-get install curl</code></pre>
-						</dd>
-						<dt>2. Add the Node.js PPA (Personal Package Archive)</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -</code></pre>
-						</dd>
-						<dt>3. Install Node.js</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> sudo apt-get install -y nodejs</code></pre>
-						</dd>
-						<dt>4. Create practice Node.js website</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> vim test_server.js</code></pre>
-							Copy into your file the following code.  As a note, you can also use the built-in text editor instead of vim/nano to modify the text files.
-							However, it is still strongly encouraged for you to become familiar with a terminal text editor.  Not all linux systems have a desktop to work within!
-							<pre><code  class="language-bash">const http = require('http');
-
-const hostname = '127.0.0.1';
-const port = 3000;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});</code></pre>
-						</dd>
-						<dt>5. Start your Node.js website</dt>
-						<dd>
-							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> node test_server.js</code></pre>
+              Share your ideas from the last step with your Sensei!</br>
+              <i>-Next, we will be implementing these mods into the game</i>
 						</dd>
 					</dl>
 				</div>
