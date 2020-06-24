@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Space Invaders</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Space Invaders</h1>
+					<p class="lead">Today, we will create Space Invaders, a game where you
+             fly through space and shoot enemy space ships. We will add one bit
+             of code at a time, and test each part as we build the game.
+          <br>
+					<b>After each section, check your work with a sensei!</b></p>
+				</div>
+				<div class="col-2">
+					<table class="table">
+						<tr>
+							<th class="h5" style="text-align:center">Est. Time  &#x023F1;</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">60</span> minutes</td>
+						</tr>
+					</table>
+				</div>
+			  </div>
+				<div class="row">
+
+
+				</div>
+			</div>
+
+      <div class="card card-body" id="step1">
+        <div class="stepLine">
+          <p class="alignleft h5">1. Add a start screen</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)" >Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time1">10</span> Minutes)</p>
+        </div>
+        <div class="collapse" id="multiCollapseExample1">
+          <dl>
+            <dt>1. Navigate to <a target="_blank" href="https://codepen.io/">CodePen.io</a></dt>
+            <dd>If you do not already have an account, create one at <a target="_blank" href="https://codepen.io/">CodePen.io</a>
+            <dt>2. Login</dt>
+            <dd>
+              <div class="row">
+                <div class="col-6">
+                  <li>Under "create" at the top left, click "Pen" to create new pen</li>
+                  <li>Title this new pen "Space Invaders"</li>
+                  <li>Click on "View in Editor" at the top right of the pop-up window</li>
+                </div>
+                <div class="col-4">
+                  <img height=80% src="img/dashboard.PNG">
+                </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">2. Embedding the Brick Breaker Code</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">15</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample2">
+        </br><div class="row">
+            <h2 style ="text-align: center;">Press (ctrl+s) after EVERY STEP to save.</h2>
+          </div></br>
+          <dl>
+						<dt>1. In the upper left corner, next to "Untitled", click on the pencil to change the title to "Brick Breaker"</dt></br>
+						<dt>2. <u>The Skeleton:</u> Add the HTML code below to the HTML section to create a canvas </dt>
+            <dd><i>A canvas is used in to draw graphics on a web page.</i></dd>
+						<dd>
+							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-html">&lt;canvas id="myCanvas" width="480" height="320"&gt;&lt;/canvas&gt;</code></pre>
+						</dd>
+						<dt>3. <u>The Skin:</u> Add this code to the CSS section to color the background light gray</dt>
+						<dd>
+							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-css">canvas { background: #eee; }</code></pre>
+						</dd>
+            <dt>4. Now, you get to choose the color of the background for your game!</dt>
+              <dd>
+                <div class="row">
+                  <div class="col-6">
+                    <ul>
+                      <li><a target="_blank" href="https://www.w3schools.com/colors/colors_picker.asp">Click here</a> to visit our color picker, and pick your favorite.</li>
+                      <li>One you find it, copy (ctrl+c) the <b>hex code</b>.</li>
+                      <li>Return to the CodePen page, and replace "(#eee)" with your new hex color value</br>
+                      <i>Tip: You can highlight "#eee" with the cursor and press (ctrl+v) to quickly do this</i></li>
+                    </ul>
+                  </div>
+                  <div class="col-6">
+                  </br>
+                    <h4>Example Hex Code:</h4>
+                    <figure>
+                      <img src="img/hex.PNG">
+                      <figcaption><b>Hex code is used to represent colors in a way the computer understand</b></figcaption>
+                    </figure>
+                  </div>
+                <div>
+                <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-css">canvas { background: NEW_COLOR_HERE; }</code></pre>
+              </dd>
+              <dt>5. Press (ctrl+s) to save and see your new background!</dt></br>
+                <figure>
+                  <img src="img/new_canvas.PNG">
+                  <figcaption><b>Make sure you see your color after saving!</b></figcaption>
+                </figure>
+              </dd>
+
+						<dt>6. <u>The Motion:</u> Now, add ALL of this JavaScript code to the Javascript section </dt>
+						<dd>
+						 <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">
+////VARIABLES////
+var score = 0;
+var lives = 3;
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+//Size of ball
+var ballRadius = 10;
+
+//Ball posistion
+var x = canvas.width/2;
+var y = canvas.height-30;
+
+//Ball speed
+var dx = 2;
+var dy = -2;
+
+//Paddle and movement
+var paddleHeight = 10;
+var paddleWidth = 75;
+var paddleX = (canvas.width-paddleWidth)/2;
+var rightPressed = false; //for event listeners
+var leftPressed = false; //for event listeners
+
+//Brick variables
+var brickRowCount = 5;
+var brickColumnCount = 3;
+var brickWidth = 75;
+var brickHeight = 20;
+var brickPadding = 10;
+var brickOffsetTop = 30;
+var brickOffsetLeft = 30;
+var bricks = [];
+
+for(var c=0; c < brickColumnCount; c++) {
+  bricks[c] = [];
+  for(var r=0; r < brickRowCount; r++) {
+    bricks[c][r] = { x: 0, y: 0, status: 1 };
+  }
+}
+////END VARIABLES////
+
+////EVENT LISTENERS////
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+// document.addEventListener("mousemove", mouseMoveHandler, false);
+
+function keyDownHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = true;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = true;
+    }
+}
+
+function keyUpHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = false;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = false;
+    }
+}
+
+function mouseMoveHandler(e) {
+  var relativeX = e.clientX - canvas.offsetLeft;
+  if(relativeX > 0 && relativeX < canvas.width) {
+    paddleX = relativeX - paddleWidth/2;
+  }
+}
+function collisionDetection() {
+  for(var c=0; c < brickColumnCount; c++) {
+    for(var r=0; r < brickRowCount; r++) {
+      var b = bricks[c][r];
+      if(b.status == 1) {
+        if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+          dy = -dy;
+          b.status = 0;
+          score++;
+          if(score == brickRowCount*brickColumnCount) {
+            alert("YOU WIN, CONGRATS!");
+            document.location.reload();
+          }
+        }
+      }
+    }
+  }
+}
+////END EVENT HANDLERS////
+
+////CANVAS////
+function drawBall() {
+  ctx.beginPath();
+  ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+  ctx.fillStyle = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
+}
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+  ctx.fillStyle = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
+}
+function drawBricks() {
+  for(var c=0; c < brickColumnCount; c++) {
+    for(var r=0; r < brickRowCount; r++) {
+      if(bricks[c][r].status == 1) {
+        var brickX = (r*(brickWidth+brickPadding))+brickOffsetLeft;
+        var brickY = (c*(brickHeight+brickPadding))+brickOffsetTop;
+        bricks[c][r].x = brickX;
+        bricks[c][r].y = brickY;
+        ctx.beginPath();
+        ctx.rect(brickX, brickY, brickWidth, brickHeight);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
+  }
+}
+function drawScore() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText("Score: "+score, 8, 20);
+}
+function drawLives() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawBricks();
+  drawBall();
+  drawPaddle();
+  drawScore();
+  drawLives();
+  collisionDetection();
+
+  if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+    dx = -dx;
+  }
+  if(y + dy < ballRadius) {
+    dy = -dy;
+  }
+  else if(y + dy > canvas.height-ballRadius) {
+    if(x > paddleX && x < paddleX + paddleWidth) {
+      dy = -dy;
+    }
+    else {
+      lives--;
+      if(!lives) {
+        alert("GAME OVER");
+        document.location.reload();
+      }
+      else {
+        x = canvas.width/2;
+        y = canvas.height-30;
+        dx = 3;
+        dy = -3;
+        paddleX = (canvas.width-paddleWidth)/2;
+      }
+    }
+  }
+
+  if(rightPressed && paddleX < canvas.width-paddleWidth) {
+    paddleX += 7;
+  }
+  else if(leftPressed && paddleX > 0) {
+    paddleX -= 7;
+  }
+
+  x += dx;
+  y += dy;
+  requestAnimationFrame(draw);
+}
+////END CANVAS////
+
+draw();
+              </code></pre>
+						</dd>
+						<dt>6. The game is ready for playing!</dt>
+						<dd>
+              Make sure you save before moving on.
+						</dd>
+
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">3. Lets try it out!</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time3">15</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample3">
+					<dl>
+						<dt>1. Try out the game</dt>
+						<dd>
+              <ul>
+  							<li>Take a break from all the hard work, and try out the game</li>
+                <li>As you play, see if you can think of ways the game can be better</li>
+                <li>Or, try thinking of problems with the game, and what can be done to make it better</li>
+              </ul>
+              <div class="form-group">
+                <label for="notes"><i>Aim for atleast 5 ideas...</i><b>Get Creative!</b></label>
+                <textarea class="form-control rounded-0" id="notes" rows="10"></textarea>
+              </div>
+						</dd>
+						<dt>2. Brain Storm</dt>
+						<dd>
+              Share your ideas from the last step with your Sensei!</br>
+              <i>-Next, we will be implementing these mods into the game</i>
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>
