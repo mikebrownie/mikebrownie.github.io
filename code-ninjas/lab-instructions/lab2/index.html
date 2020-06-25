@@ -46,7 +46,7 @@
 
       <div class="card card-body" id="step1">
         <div class="stepLine">
-          <p class="alignleft h5">1. Add a start screen</p>
+          <p class="alignleft h5">1. Login to CodePen and Add Starter Code</p>
           <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)" >Mark Complete</button>
           <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
           <p class="alignright h5">(<span class="time" id="time1">10</span> Minutes)</p>
@@ -67,6 +67,242 @@
                   <img height=80% src="img/dashboard.PNG">
                 </div>
             </dd>
+            <dt>3. Add in HTML</dt>
+              <dd>
+                <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Space Game&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/main.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class="wrap"&gt;
+    &lt;header&gt;Space Game&lt;/header&gt;
+    &lt;div class="game-wrapper"&gt;
+      &lt;div class="game"&gt;&lt;/div&gt;
+      &lt;div class="congratulations"&gt;
+        &lt;h1&gt;Congratulations!&lt;/h1&gt;
+        &lt;h2&gt;You won the game&lt;/h2&gt;
+        &lt;button class="btn" onclick="window.location.reload()"&gt;Restart&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="game-over"&gt;
+        &lt;h1&gt;GAME OVER&lt;/h1&gt;
+        &lt;h2&gt;You lost the game&lt;/h2&gt;
+        &lt;button class="btn" onclick="window.location.reload()"&gt;Restart&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;Left/right keys to move&lt;/footer&gt;
+  &lt;/div&gt;
+  &lt;script src="js/game.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+                </code></pre>
+              </dd>
+            <dt>4. Add in CSS</dt>
+            <dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-css">  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    margin: 0;
+    font: 16px sans-serif;
+  }
+
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  header {
+    text-align: center;
+    background: black;
+    color: #fff;
+    padding: 10px;
+  }
+
+  footer {
+    padding: 10px;
+    text-align: center;
+    font-size: 11px;
+    background: black;
+    color: white;
+  }
+
+  .game-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #222;
+  }
+  .game {
+    width: 800px;
+    height: 600px;
+    background: url(https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/background-blue.png);
+    animation: scroll-background 5s linear infinite;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+
+  @keyframes scroll-background {
+    from {
+      background-position-y: 0px;
+    }
+    to {
+      background-position-y: 256px;
+    }
+  }
+
+  .game .enemy {
+    position: absolute;
+    margin-left: -20px;
+    margin-top: -18px;
+    width: 40px;
+  }
+
+  .game .player {
+    position: absolute;
+    margin-left: -20px;
+    width: 40px;
+  }
+
+  .game .laser {
+    position: absolute;
+    margin-left: -2.5px;
+    height: 30px;
+  }
+
+  .game .enemy-laser {
+    position: absolute;
+    margin-left: -2.5px;
+    height: 30px;
+  }
+
+  .congratulations {
+    display: none;
+    position: absolute;
+    background: #c7a526;
+    color: white;
+    padding: 20px 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    animation: pop-in 1s;
+  }
+
+  .game-over {
+    display: none;
+    position: absolute;
+    background: #6b1818;
+    color: white;
+    padding: 20px 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    animation: pop-in 1s;
+  }
+
+  .btn {
+    border: 2px solid #36bbf5;
+    border-radius: 3px;
+    box-shadow: 0 2px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(
+      to bottom,
+      #fff 0%,
+      #fff 49%,
+      #f5f5f5 50%,
+      #eee 100%
+    );
+    padding: 10px 40px;
+    font: 14px sans-serif;
+  }
+  @keyframes pop-in {
+    0% {
+      opacity: 0;
+      transform: translate(0, -100px);
+    }
+    10% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(0, 30px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+              </code></pre>
+            </dd>
+            <dd>Now, after safing, you should see a scrolling background</dd>
+            <dt>4. Add in Javascript</dt>
+            <dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">const KEY_CODE_LEFT = 37;
+const KEY_CODE_RIGHT = 39;
+const KEY_CODE_SPACE = 32;
+
+const GAME_WIDTH = 800;
+const GAME_HEIGHT = 600;
+
+const PLAYER_WIDTH = 20;
+const PLAYER_MAX_SPEED = 600.0;
+const LASER_MAX_SPEED = 300.0;
+const LASER_COOLDOWN = 0.5;
+
+const ENEMIES_PER_ROW = 10;
+const ENEMY_HORIZONTAL_PADDING = 80;
+const ENEMY_VERTICAL_PADDING = 70;
+const ENEMY_VERTICAL_SPACING = 80;
+const ENEMY_COOLDOWN = 5.0;
+
+const GAME_STATE = {
+  lastTime: Date.now(),
+  leftPressed: false,
+  rightPressed: false,
+  spacePressed: false,
+  playerX: 0,
+  playerY: 0,
+  playerCooldown: 0,
+  lasers: [],
+  enemies: [],
+  enemyLasers: [],
+  gameOver: false
+};
+
+function clamp(v, min, max) {
+  if (v < min) {
+    return min;
+  } else if (v > max) {
+    return max;
+  } else {
+    return v;
+  }
+}
+
+function rectsIntersect(r1, r2) {
+  return !(
+    r2.left > r1.right ||
+    r2.right < r1.left ||
+    r2.top > r1.bottom ||
+    r2.bottom < r1.top
+  );
+}
+
+function rand(min, max) {
+  if (min === undefined) min = 0;
+  if (max === undefined) max = 1;
+  return min + Math.random() * (max - min);
+}
+              </code></pre>
+            </dd>
           </dl>
         </div>
       </div>
@@ -74,248 +310,60 @@
 
 			<div class="card card-body" id="step2">
 				<div class="stepLine">
-					<p class="alignleft h5">2. Embedding the Brick Breaker Code</p>
+					<p class="alignleft h5">2. Creating the Player</p>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
-					<p class="alignright h5">(<span class="time" id="time2">15</span> Minutes)</p>
+					<p class="alignright h5">(<span class="time" id="time2">20</span> Minutes)</p>
 				</div>
 				<div class="collapse" id="multiCollapseExample2">
         </br><div class="row">
             <h2 style ="text-align: center;">Press (ctrl+s) after EVERY STEP to save.</h2>
           </div></br>
           <dl>
-						<dt>1. In the upper left corner, next to "Untitled", click on the pencil to change the title to "Brick Breaker"</dt></br>
-						<dt>2. <u>The Skeleton:</u> Add the HTML code below to the HTML section to create a canvas </dt>
-            <dd><i>A canvas is used in to draw graphics on a web page.</i></dd>
+						<dt>1. Creating the player</dt></br>
+            <dd>After all the variable declarations, at the bottom of JS, add this function to create the player</dd>
+            <dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-JavaScript">function createPlayer($container) {
+  GAME_STATE.playerX = GAME_WIDTH / 2;
+  GAME_STATE.playerY = GAME_HEIGHT - 50;
+  const $player = document.createElement("img");
+  $player.src = "https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/player-blue-1.png";
+  $player.className = "player";
+  $container.appendChild($player);
+  setPosition($player, GAME_STATE.playerX, GAME_STATE.playerY);
+}
+</code></pre>
+            </dd>
+            <dd>Now, we have defined a function that we can call to create the player!</dd>
+						<dt>2. Setting posistion </dt>
+            <dd>Now that we have a function for creating the player, we need a function for setting position</dd>
+            <dd>Add this code just below the "GAME_STATE" Object declaration. </dd>
+            <dd><i>Hint: the object declaration ends at the closing curly bracket "}"</i></dd>
 						<dd>
-							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-html">&lt;canvas id="myCanvas" width="480" height="320"&gt;&lt;/canvas&gt;</code></pre>
+							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function setPosition(el, x, y) {
+  el.style.transform = `translate(${x}px, ${y}px)`;
+}</code></pre>
 						</dd>
-						<dt>3. <u>The Skin:</u> Add this code to the CSS section to color the background light gray</dt>
-						<dd>
-							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-css">canvas { background: #eee; }</code></pre>
-						</dd>
-            <dt>4. Now, you get to choose the color of the background for your game!</dt>
-              <dd>
-                <div class="row">
-                  <div class="col-6">
-                    <ul>
-                      <li><a target="_blank" href="https://www.w3schools.com/colors/colors_picker.asp">Click here</a> to visit our color picker, and pick your favorite.</li>
-                      <li>One you find it, copy (ctrl+c) the <b>hex code</b>.</li>
-                      <li>Return to the CodePen page, and replace "(#eee)" with your new hex color value</br>
-                      <i>Tip: You can highlight "#eee" with the cursor and press (ctrl+v) to quickly do this</i></li>
-                    </ul>
-                  </div>
-                  <div class="col-6">
-                  </br>
-                    <h4>Example Hex Code:</h4>
-                    <figure>
-                      <img src="img/hex.PNG">
-                      <figcaption><b>Hex code is used to represent colors in a way the computer understand</b></figcaption>
-                    </figure>
-                  </div>
-                <div>
-                <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-css">canvas { background: NEW_COLOR_HERE; }</code></pre>
-              </dd>
-              <dt>5. Press (ctrl+s) to save and see your new background!</dt></br>
-                <figure>
-                  <img src="img/new_canvas.PNG">
-                  <figcaption><b>Make sure you see your color after saving!</b></figcaption>
-                </figure>
-              </dd>
 
-						<dt>6. <u>The Motion:</u> Now, add ALL of this JavaScript code to the Javascript section </dt>
-						<dd>
-						 <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">
-////VARIABLES////
-var score = 0;
-var lives = 3;
-
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
-
-//Size of ball
-var ballRadius = 10;
-
-//Ball posistion
-var x = canvas.width/2;
-var y = canvas.height-30;
-
-//Ball speed
-var dx = 2;
-var dy = -2;
-
-//Paddle and movement
-var paddleHeight = 10;
-var paddleWidth = 75;
-var paddleX = (canvas.width-paddleWidth)/2;
-var rightPressed = false; //for event listeners
-var leftPressed = false; //for event listeners
-
-//Brick variables
-var brickRowCount = 5;
-var brickColumnCount = 3;
-var brickWidth = 75;
-var brickHeight = 20;
-var brickPadding = 10;
-var brickOffsetTop = 30;
-var brickOffsetLeft = 30;
-var bricks = [];
-
-for(var c=0; c < brickColumnCount; c++) {
-  bricks[c] = [];
-  for(var r=0; r < brickRowCount; r++) {
-    bricks[c][r] = { x: 0, y: 0, status: 1 };
-  }
-}
-////END VARIABLES////
-
-////EVENT LISTENERS////
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
-// document.addEventListener("mousemove", mouseMoveHandler, false);
-
-function keyDownHandler(e) {
-    if(e.key == "Right" || e.key == "ArrowRight") {
-        rightPressed = true;
-    }
-    else if(e.key == "Left" || e.key == "ArrowLeft") {
-        leftPressed = true;
-    }
-}
-
-function keyUpHandler(e) {
-    if(e.key == "Right" || e.key == "ArrowRight") {
-        rightPressed = false;
-    }
-    else if(e.key == "Left" || e.key == "ArrowLeft") {
-        leftPressed = false;
-    }
-}
-
-function mouseMoveHandler(e) {
-  var relativeX = e.clientX - canvas.offsetLeft;
-  if(relativeX > 0 && relativeX < canvas.width) {
-    paddleX = relativeX - paddleWidth/2;
-  }
-}
-function collisionDetection() {
-  for(var c=0; c < brickColumnCount; c++) {
-    for(var r=0; r < brickRowCount; r++) {
-      var b = bricks[c][r];
-      if(b.status == 1) {
-        if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
-          dy = -dy;
-          b.status = 0;
-          score++;
-          if(score == brickRowCount*brickColumnCount) {
-            alert("YOU WIN, CONGRATS!");
-            document.location.reload();
-          }
-        }
-      }
-    }
-  }
-}
-////END EVENT HANDLERS////
-
-////CANVAS////
-function drawBall() {
-  ctx.beginPath();
-  ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-  ctx.fillStyle = "#0095DD";
-  ctx.fill();
-  ctx.closePath();
-}
-function drawPaddle() {
-  ctx.beginPath();
-  ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = "#0095DD";
-  ctx.fill();
-  ctx.closePath();
-}
-function drawBricks() {
-  for(var c=0; c < brickColumnCount; c++) {
-    for(var r=0; r < brickRowCount; r++) {
-      if(bricks[c][r].status == 1) {
-        var brickX = (r*(brickWidth+brickPadding))+brickOffsetLeft;
-        var brickY = (c*(brickHeight+brickPadding))+brickOffsetTop;
-        bricks[c][r].x = brickX;
-        bricks[c][r].y = brickY;
-        ctx.beginPath();
-        ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "#0095DD";
-        ctx.fill();
-        ctx.closePath();
-      }
-    }
-  }
-}
-function drawScore() {
-  ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
-  ctx.fillText("Score: "+score, 8, 20);
-}
-function drawLives() {
-  ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
-  ctx.fillText("Lives: "+lives, canvas.width-65, 20);
-}
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawBricks();
-  drawBall();
-  drawPaddle();
-  drawScore();
-  drawLives();
-  collisionDetection();
-
-  if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-    dx = -dx;
-  }
-  if(y + dy < ballRadius) {
-    dy = -dy;
-  }
-  else if(y + dy > canvas.height-ballRadius) {
-    if(x > paddleX && x < paddleX + paddleWidth) {
-      dy = -dy;
-    }
-    else {
-      lives--;
-      if(!lives) {
-        alert("GAME OVER");
-        document.location.reload();
-      }
-      else {
-        x = canvas.width/2;
-        y = canvas.height-30;
-        dx = 3;
-        dy = -3;
-        paddleX = (canvas.width-paddleWidth)/2;
-      }
-    }
-  }
-
-  if(rightPressed && paddleX < canvas.width-paddleWidth) {
-    paddleX += 7;
-  }
-  else if(leftPressed && paddleX > 0) {
-    paddleX -= 7;
-  }
-
-  x += dx;
-  y += dy;
-  requestAnimationFrame(draw);
-}
-////END CANVAS////
-
-draw();
-              </code></pre>
-						</dd>
-						<dt>6. The game is ready for playing!</dt>
-						<dd>
-              Make sure you save before moving on.
-						</dd>
+            <dt>3. Initialization (executed when page is loaded) function</dt>
+            <dd>This function is important because it tells the computer what to do to start the game.</dd>
+            <dd>First, we tell the computer to select the container for the game, and store it in "container"</dd>
+            <dd>After that, we call our createPlayer function, and pass it the container so it knows where to create the player</dd>
+            <dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function init() {
+  const $container = document.querySelector(".game");
+  createPlayer($container);
+}</code></pre></dd>
+            <dd>So far, we have defined functions and variables. However, the player still doesn't appear</dd>
+            <dd>Now, we will call our "init" function to start executing code!</dd>
+            <dd>Add this function call to the bottom of the JS section</dd>
+            <dd>
+            <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">init();</code></pre>
+            </dd>
+            <dd> <b> Check: </b>Before moving on, make sure your game looks like this:
+              <div class="col-4">
+                <img height=80% src="img/player.png">
+              </div>
+            </dd>
 
 					</dl>
 				</div>
@@ -323,30 +371,110 @@ draw();
 
 			<div class="card card-body" id="step3">
 				<div class="stepLine">
-					<p class="alignleft h5">3. Lets try it out!</p>
+					<p class="alignleft h5">3. Player Movement</p>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
 					<p class="alignright h5">(<span class="time" id="time3">15</span> Minutes)</p>
 				</div>
 				<div class="collapse" id="multiCollapseExample3">
 					<dl>
-						<dt>1. Try out the game</dt>
+						<dt>1. Taking input</dt>
 						<dd>
               <ul>
-  							<li>Take a break from all the hard work, and try out the game</li>
-                <li>As you play, see if you can think of ways the game can be better</li>
-                <li>Or, try thinking of problems with the game, and what can be done to make it better</li>
+  							<li>Now, we will add code to take keyboard input</li>
+                <li>To do this, we will use <b>Event Listeners</b></li>
+                <li>Later this will be used to move the player</li>
               </ul>
-              <div class="form-group">
-                <label for="notes"><i>Aim for atleast 5 ideas...</i><b>Get Creative!</b></label>
-                <textarea class="form-control rounded-0" id="notes" rows="10"></textarea>
-              </div>
 						</dd>
-						<dt>2. Brain Storm</dt>
-						<dd>
-              Share your ideas from the last step with your Sensei!</br>
-              <i>-Next, we will be implementing these mods into the game</i>
-						</dd>
+            <dd>Lets define our functions that will be called when keys are pressed or released.</dd>
+            <dd>This code below is already added, but notice we have flags that store which keys are pressed in our GAME_STATE object</dd>
+          </dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">const GAME_STATE = {
+  lastTime: Date.now(),
+  leftPressed: false, //left key flag*****************
+  rightPressed: false, //right key flag***************
+  spacePressed: false, //space bar flag***************
+  playerX: 0,
+  playerY: 0,
+  playerCooldown: 0,
+  lasers: [],
+  enemies: [],
+  enemyLasers: [],
+  gameOver: false
+};</code></pre></dd>
+            <dd>In our <b>onKeyUp</b> and <b>onKeyDown functions</b>, we will set these flags to true, meaning the key is pressed, or false, meaning the key was released.</dd>
+            <dd>Add this code in your function definition section</dd>
+            <dd>
+            <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function onKeyDown(e) {
+  if (e.keyCode === KEY_CODE_LEFT) {
+    GAME_STATE.leftPressed = true;
+  } else if (e.keyCode === KEY_CODE_RIGHT) {
+    GAME_STATE.rightPressed = true;
+  } else if (e.keyCode === KEY_CODE_SPACE) {
+    GAME_STATE.spacePressed = true;
+  }
+}
+
+function onKeyUp(e) {
+  if (e.keyCode === KEY_CODE_LEFT) {
+    GAME_STATE.leftPressed = false;
+  } else if (e.keyCode === KEY_CODE_RIGHT) {
+    GAME_STATE.rightPressed = false;
+  } else if (e.keyCode === KEY_CODE_SPACE) {
+    GAME_STATE.spacePressed = false;
+  }
+}
+</code></pre></dd>
+						<dt>2. Event Listeners</dt>
+            <dd>Just like before, we have created functions, but we have not told the computer when or how to use them yet.</dd>
+						<dd><b>Event Listeners</b> allow us to call functions whenever a specific event happens, like keyboard input.</dd>
+            <dd><b>Below the init(); call</b> lets add 2 listeners, keyup and keydown, so that they each call their function</dd>
+            <dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">window.addEventListener("keydown", onKeyDown);
+window.addEventListener("keyup", onKeyUp);</code></pre></dd>
+            <dt>3. UpdatePlayer Function</dt>
+            <dd> Now that we have set flags that tell the computer when keys are pressed, we need to add functions that move the player when keys are pressed</dd>
+            <dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function updatePlayer(dt, $container) {
+  if (GAME_STATE.leftPressed) {
+    GAME_STATE.playerX -= dt * PLAYER_MAX_SPEED;
+  }
+  if (GAME_STATE.rightPressed) {
+    GAME_STATE.playerX += dt * PLAYER_MAX_SPEED;
+  }
+
+  GAME_STATE.playerX = clamp(
+    GAME_STATE.playerX,
+    PLAYER_WIDTH,
+    GAME_WIDTH - PLAYER_WIDTH
+  );
+
+  const player = document.querySelector(".player");
+  setPosition(player, GAME_STATE.playerX, GAME_STATE.playerY);
+}</code></pre></dd>
+          <dt>4. Update Function</dt>
+          <dd>The update function will be called each frame, <b>up to 60 times each second!</b></dd>
+          <dd><b>Think of the game as a flip book</b>
+            <li>Each frame is another page in the flipbook</li>
+            <li>The update function tells the computer where to move things in the next page</li>
+            <li>So far we created update player, but later we will add enemy movement and lasers!</li>
+          </dd>
+          <dd>Below the updatePlayer function, add this update function</dd>
+          <dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function update(e) {
+  const currentTime = Date.now();
+  const dt = (currentTime - GAME_STATE.lastTime) / 1000.0;
+
+  if (GAME_STATE.gameOver) {
+    document.querySelector(".game-over").style.display = "block";
+    return;
+  }
+
+  const $container = document.querySelector(".game");
+  updatePlayer(dt, $container); //THE FUNCTION WE JUST MADE
+
+  GAME_STATE.lastTime = currentTime;
+  window.requestAnimationFrame(update);
+}</code></pre></dd>
+          <dd>Lastly, add in this code at the very bottom of the JS section to call the update function each frame</dd>
+          <dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">window.requestAnimationFrame(update);</code></pre></dd>
+          <dd>Try out the player movement! If it doesn't work, ask for help from a sensei</dd>
 					</dl>
 				</div>
 			</div>
