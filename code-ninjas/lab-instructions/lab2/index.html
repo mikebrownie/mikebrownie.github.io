@@ -64,8 +64,9 @@
                   <li>Click on "View in Editor" at the top right of the pop-up window</li>
                 </div>
                 <div class="col-4">
-                  <img height=80% src="img/dashboard.PNG">
+                  <img height=80% src="img/sign_up.PNG">
                 </div>
+              </div>
             </dd>
             <dt>3. Add in HTML</dt>
               <dd>
@@ -147,7 +148,7 @@
   .game {
     width: 800px;
     height: 600px;
-    background: url(https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/background-blue.png);
+    background: url(https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/background-blue.PNG);
     animation: scroll-background 5s linear infinite;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -308,66 +309,82 @@ function rand(min, max) {
       </div>
     </div>
 
-			<div class="card card-body" id="step2">
-				<div class="stepLine">
-					<p class="alignleft h5">2. Creating the Player</p>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
-					<p class="alignright h5">(<span class="time" id="time2">20</span> Minutes)</p>
-				</div>
-				<div class="collapse" id="multiCollapseExample2">
-        </br><div class="row">
-            <h2 style ="text-align: center;">Press (ctrl+s) after EVERY STEP to save.</h2>
-          </div></br>
-          <dl>
-						<dt>1. Creating the player</dt></br>
-            <dd>After all the variable declarations, at the bottom of JS, add this function to create the player</dd>
-            <dd>
-              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-JavaScript">function createPlayer($container) {
-  GAME_STATE.playerX = GAME_WIDTH / 2;
-  GAME_STATE.playerY = GAME_HEIGHT - 50;
-  const $player = document.createElement("img");
-  $player.src = "https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/player-blue-1.png";
-  $player.className = "player";
-  $container.appendChild($player);
-  setPosition($player, GAME_STATE.playerX, GAME_STATE.playerY);
+    <div class="card card-body" id="step2">
+      <div class="stepLine">
+        <p class="alignleft h5">2. Creating and Destroying the Player</p>
+        <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
+        <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+        <p class="alignright h5">(<span class="time" id="time2">20</span> Minutes)</p>
+      </div>
+      <div class="collapse" id="multiCollapseExample2">
+      </br><div class="row">
+          <h2 style ="text-align: center;">Press (ctrl+s) after EVERY STEP to save.</h2>
+        </div></br>
+        <dl>
+          <dt>1. Creating the player</dt></br>
+          <dd>After all the variable declarations, at the bottom of JS, add this function to create the player</dd>
+          <dd>
+            <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-JavaScript">function createPlayer($container) {
+GAME_STATE.playerX = GAME_WIDTH / 2;
+GAME_STATE.playerY = GAME_HEIGHT - 50;
+const $player = document.createElement("img");
+$player.src = "https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/player-blue-1.PNG";
+$player.className = "player";
+$container.appendChild($player);
+setPosition($player, GAME_STATE.playerX, GAME_STATE.playerY);
+}
+
+function destroyPlayer($container, player) {
+$container.removeChild(player);
+GAME_STATE.gameOver = true;
+const audio = new Audio("https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/sound/sfx-lose.ogg");
+audio.play();
 }
 </code></pre>
-            </dd>
-            <dd>Now, we have defined a function that we can call to create the player!</dd>
-						<dt>2. Setting posistion </dt>
-            <dd>Now that we have a function for creating the player, we need a function for setting position</dd>
-            <dd>Add this code just below the "GAME_STATE" Object declaration. </dd>
-            <dd><i>Hint: the object declaration ends at the closing curly bracket "}"</i></dd>
-						<dd>
-							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function setPosition(el, x, y) {
-  el.style.transform = `translate(${x}px, ${y}px)`;
+          </dd>
+          <dd>Now, we have defined a functions that we can call to create and destroy the player!</dd>
+          <dt>2. Setting posistion </dt>
+          <dd>Now that we have a function for creating the player, we need a function for setting position</dd>
+          <dd>Add this code just below the "GAME_STATE" Object declaration. </dd>
+          <dd><i>Hint: the object declaration ends at the closing curly bracket "}"</i></dd>
+          <dd>
+            <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function setPosition(el, x, y) {
+el.style.transform = `translate(${x}px, ${y}px)`;
 }</code></pre>
-						</dd>
+          </dd>
 
-            <dt>3. Initialization (executed when page is loaded) function</dt>
-            <dd>This function is important because it tells the computer what to do to start the game.</dd>
-            <dd>First, we tell the computer to select the container for the game, and store it in "container"</dd>
-            <dd>After that, we call our createPlayer function, and pass it the container so it knows where to create the player</dd>
-            <dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function init() {
-  const $container = document.querySelector(".game");
-  createPlayer($container);
+          <dt>3. Initialization (executed when page is loaded) function</dt>
+          <dd>This function is important because it tells the computer what to do to start the game.</dd>
+          <dd>First, we tell the computer to select the container for the game, and store it in "container"</dd>
+          <dd>After that, we call our createPlayer function, and pass it the container so it knows where to create the player</dd>
+          <dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function init() {
+const $container = document.querySelector(".game");
+createPlayer($container);
+
+//Section 5.1: Add enemy formation here
 }</code></pre></dd>
-            <dd>So far, we have defined functions and variables. However, the player still doesn't appear</dd>
-            <dd>Now, we will call our "init" function to start executing code!</dd>
-            <dd>Add this function call to the bottom of the JS section</dd>
-            <dd>
-            <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">init();</code></pre>
-            </dd>
-            <dd> <b> Check: </b>Before moving on, make sure your game looks like this:
-              <div class="col-4">
-                <img height=80% src="img/player.png">
-              </div>
-            </dd>
+          <dd>So far, we have defined functions and variables. However, the player still doesn't appear</dd>
+          <dd>Now, we will call our "init" function to start executing code!</dd>
+          <dd>Add this function call to the bottom of the JS section</dd>
+          <dd>
+          <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">init();</code></pre>
+          </dd>
+        </br></br>
+          <div class="row">
+            <dl>5. Progress check</dl>
+            <div class="col-6">
+                <li>Before moving on, make sure your game looks like this:</li>
+                <li>There should be a spaceship flying through space</li>
+                <li>If this isn't what you have, reach out to a sensei for help</li>
+              </dd>
+            </div>
+            <div class="col-4">
+              <img src="img/player.PNG">
+            </div>
+          </div>
+      </div>
+    </div>
 
-					</dl>
-				</div>
-			</div>
 
 			<div class="card card-body" id="step3">
 				<div class="stepLine">
@@ -446,6 +463,8 @@ window.addEventListener("keyup", onKeyUp);</code></pre></dd>
     GAME_WIDTH - PLAYER_WIDTH
   );
 
+  //Part 4.1: add condition below
+
   const player = document.querySelector(".player");
   setPosition(player, GAME_STATE.playerX, GAME_STATE.playerY);
 }</code></pre></dd>
@@ -468,6 +487,7 @@ window.addEventListener("keyup", onKeyUp);</code></pre></dd>
 
   const $container = document.querySelector(".game");
   updatePlayer(dt, $container); //THE FUNCTION WE JUST MADE
+  //Section 4.4: add updateLasers here
 
   GAME_STATE.lastTime = currentTime;
   window.requestAnimationFrame(update);
@@ -478,6 +498,234 @@ window.addEventListener("keyup", onKeyUp);</code></pre></dd>
 					</dl>
 				</div>
 			</div>
+
+
+			<div class="card card-body" id="step4">
+				<div class="stepLine">
+					<p class="alignleft h5">4. Firing Lasers</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time4">15</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample4">
+					<dl>
+						<dt>1. Taking input</dt>
+						<dd>
+              <ul>
+  							<li>In the onKeyUp and onKeyDown functions, we already added an <b>Event Listener</b> for spacebar</li>
+                <li>The event listener will set the spacePressed flag in our game state object</b></li>
+                <li>Now we need to check if the spacePressed flag is set and create a laser if it is</li>
+              </ul>
+						</dd>
+            <dd>We will do this in the updatePlayer function</dd>
+            <dd>Add this code just below the comment inside of the updatePlayer function</dd>
+          </dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript"> if (GAME_STATE.spacePressed && GAME_STATE.playerCooldown <= 0) {
+    createLaser($container, GAME_STATE.playerX, GAME_STATE.playerY);
+    GAME_STATE.playerCooldown = LASER_COOLDOWN;
+  }
+  if (GAME_STATE.playerCooldown > 0) {
+    GAME_STATE.playerCooldown -= dt;
+  }</code></pre></dd>
+            <dd>This code calls the createLaser() function if space is pressed, and a playerCooldown has passed</dd>
+            <dd>The second <b>if condition</b> decrements the time left on the cooldown </dd>
+
+            <dt>2. The createLaser and destroyLaser functions</dt>
+            <dd>Now, we will add the definition for the createLaser function call we just added to updatePlayer</dd>
+            <dd>We will also add a function for destroying the lasers</dd>
+            <dd>Add this definition to the function definition section of your code</dd>
+            <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function createLaser($container, x, y) {
+  const $element = document.createElement("img");
+  $element.src = "https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/laser-blue-1.PNG";
+  $element.className = "laser";
+  $container.appendChild($element);
+  const laser = { x, y, $element };
+  GAME_STATE.lasers.push(laser);
+  const audio = new Audio("https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/sound/sfx-laser1.ogg");
+  audio.play();
+  setPosition($element, x, y);
+}
+
+function destroyLaser($container, laser) {
+  $container.removeChild(laser.$element);
+  laser.isDead = true;
+}</code></pre></dd>
+            <dd>This code adds lasers objects to the game when called, and plays a cool sound effect!</dd>
+						<dt>3. Testing lasers!</dt>
+            <div class="row">
+              <div class="col-6">
+                <dd>Try out the lasers by moving around and pressing spacebar</dd>
+                <dd>If done correctly, your lasers should get stuck when your fire
+                   them, and you game should look something like this</dd>
+                <dd><b>Why?</b></dd>
+                <dd> We haven't defined how lasers are supposed to change, or move in between frames. Lets get to it!</dd>
+              </div>
+             <div class="col-4">
+               <img height=80% src="img/stuck_laser.PNG">
+             </div>
+           </div>
+            <dt>4. Update Function</dt>
+            <dd><i><b>Recall:</b></i> The update function will be called each frame, <b>up to 60 times each second!</b></dd>
+            <dd><b>Think of the game as a flip book</b>
+              <li>Each frame is another page in the flipbook</li>
+              <li>The update function tells the computer where to move things in the next page</li>
+              <li>So far we chave defined player movement, but now we will add lasers!</li>
+            </dd>
+            <dd>First, lets define our updateLaser function. After, we will put a call inside of the update function</dd>
+            <dd>Notice we also have also defined destroy laser, which will be called whenever the laser leaves the screen</dd>
+            <dd>In the function definition section, add these two functions</dd>
+            <dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function updateLasers(dt, $container) {
+  const lasers = GAME_STATE.lasers;
+  for (let i = 0; i < lasers.length; i++) {
+    const laser = lasers[i];
+    laser.y -= dt * LASER_MAX_SPEED;
+    if (laser.y < 0) {
+      destroyLaser($container, laser);
+    }
+    setPosition(laser.$element, laser.x, laser.y);
+  }
+  //Section : Add collision detection here
+
+  GAME_STATE.lasers = GAME_STATE.lasers.filter(e => !e.isDead);
+}
+
+  function destroyLaser($container, laser) {
+    $container.removeChild(laser.$element);
+    laser.isDead = true;
+  }</code></pre></dd>
+            <dt>5. Progress Check</dt>
+            <dd>
+              By now, you should have a moving spaceship armed with lasers
+              that fly through space!
+            </dd>
+            <dd>If you don't, reach out to a sensei for help</dd>
+            <dd>
+              Sit back, take a breather, and give yourself a pat on the back. You made this!
+               When you are ready, move on to the next section and let's add in enemies
+            </dd>
+  					</dl>
+  				</div>
+  			</div>
+
+
+        <div class="card card-body" id="step5">
+  				<div class="stepLine">
+  					<p class="alignleft h5">5. Adding Enemies</p>
+  					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)" >Mark Complete</button>
+  					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
+  					<p class="alignright h5">(<span class="time" id="time5">15</span> Minutes)</p>
+  				</div>
+  				<div class="collapse" id="multiCollapseExample5">
+  					<dl>
+              <dt>1. Creation and Destruction</dt>
+              <dd>Similar to the player and laser, we need a function
+                for creating and destroying enemies.
+              </dd>
+            </dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">   function createEnemy($container, x, y) {
+  const $element = document.createElement("img");
+  $element.src = "https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/enemy-blue-1.PNG";
+  $element.className = "enemy";
+  $container.appendChild($element);
+  const enemy = {
+    x,
+    y,
+    cooldown: rand(0.5, ENEMY_COOLDOWN),
+    $element
+  };
+  GAME_STATE.enemies.push(enemy);
+  setPosition($element, x, y);
+}
+
+function destroyEnemy($container, enemy) {
+  $container.removeChild(enemy.$element);
+  enemy.isDead = true;
+}</code></pre></dd>
+              <dd>Add this code to the function definition section of your code</dd>
+  						<dt>2. Formation (Enemy placement)</dt>
+  						<dd>Initially, we need to define the posistion of the enemies</dd>
+              <dd>This is only done on startup, so we will add it to the initialization, or init() function,</dd>
+              <dd>Add this code just below the comment inside of init() function</dd>
+            </dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">   const enemySpacing =
+    (GAME_WIDTH - ENEMY_HORIZONTAL_PADDING * 2) / (ENEMIES_PER_ROW - 1);
+  for (let j = 0; j < 3; j++) {
+    const y = ENEMY_VERTICAL_PADDING + j * ENEMY_VERTICAL_SPACING;
+    for (let i = 0; i < ENEMIES_PER_ROW; i++) {
+      const x = i * enemySpacing + ENEMY_HORIZONTAL_PADDING;
+      createEnemy($container, x, y);
+    }
+  }</code></pre></dd>
+              <dd>This code calls the createLaser() function if space is pressed, and a playerCooldown has passed</dd>
+              <dd>The second <b>if condition</b> decrements the time left on the cooldown </dd>
+              <dt>2. The createLaser function</dt>
+              <dd>Now, we will add the definition for the createLaser function call we just added to updatePlayer</dd>
+              <dd>We will also add a function for destroying the lasers</dd>
+              <dd>Add this definition to the function definition section of your code</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function createLaser($container, x, y) {
+    const $element = document.createElement("img");
+    $element.src = "https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/laser-blue-1.PNG";
+    $element.className = "laser";
+    $container.appendChild($element);
+    const laser = { x, y, $element };
+    GAME_STATE.lasers.push(laser);
+    const audio = new Audio("https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/sound/sfx-laser1.ogg");
+    audio.play();
+    setPosition($element, x, y);
+  }
+
+  function destroyLaser($container, laser) {
+    $container.removeChild(laser.$element);
+    laser.isDead = true;
+  }</code></pre></dd>
+              <dd>This code adds lasers objects to the game when called, and plays a cool sound effect!</dd>
+  						<dt>3. Testing lasers!</dt>
+              <div class="row">
+                <div class="col-6">
+                  <dd>Try out the lasers by moving around and pressing spacebar</dd>
+                  <dd>If done correctly, your lasers should get stuck when your fire
+                     them, and you game should look something like this</dd>
+                  <dd><b>Why?</b></dd>
+                  <dd> We haven't defined how lasers are supposed to change, or move in between frames. Lets get to it!</dd>
+                </div>
+               <div class="col-5">
+                 <img height=80% src="img/stuck_laser.PNG">
+               </div>
+             </div>
+              <dt>4. Update Function</dt>
+              <dd><i><b>Recall:</b></i> The update function will be called each frame, <b>up to 60 times each second!</b></dd>
+              <dd><b>Think of the game as a flip book</b>
+                <li>Each frame is another page in the flipbook</li>
+                <li>The update function tells the computer where to move things in the next page</li>
+                <li>So far we chave defined player movement, but now we will add lasers!</li>
+              </dd>
+              <dd>First, lets define our updateLaser function. After, we will put a call inside of the update function</dd>
+              <dd>Notice we also have also defined destroy laser, which will be called whenever the laser leaves the screen</dd>
+              <dd>In the function definition section, add these two functions</dd>
+              <dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function updateLasers(dt, $container) {
+    const lasers = GAME_STATE.lasers;
+    for (let i = 0; i < lasers.length; i++) {
+      const laser = lasers[i];
+      laser.y -= dt * LASER_MAX_SPEED;
+      if (laser.y < 0) {
+        destroyLaser($container, laser);
+      }
+      setPosition(laser.$element, laser.x, laser.y);
+    }
+    //Section : Add collision detection here
+
+    GAME_STATE.lasers = GAME_STATE.lasers.filter(e => !e.isDead);
+  }</code></pre></dd>
+              <dt>5. Progress Check</dt>
+              <dd>
+                By now, you should have a moving spaceship armed with lasers
+                that fly through space!
+              </dd>
+              <dd>If you don't, reach out to a sensei for help</dd>
+              <dd>
+                Sit back, relax, and give yourself a pat on the back. You made this!
+                 When you are ready, move on to the next section and let's add in enemies
+              </dd>
+    					</dl>
+    				</div>
+    			</div>
 
 		</main><!-- /.container -->
 		<div id="bottom_nav">
