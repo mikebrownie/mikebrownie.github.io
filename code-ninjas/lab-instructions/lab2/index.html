@@ -678,8 +678,6 @@ function destroyEnemy($container, enemy) {
       createEnemyLaser($container, x, y);
       enemy.cooldown = ENEMY_COOLDOWN;
     }
-
-
   }
   GAME_STATE.enemies = GAME_STATE.enemies.filter(e => !e.isDead);
 }</code></pre></dd>
@@ -687,9 +685,7 @@ function destroyEnemy($container, enemy) {
               <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">updateEnemies(dt, $container);</code></pre></dd>
 
               <dt>4. Enemy Lasers</dt>
-              <dd>Enemy lasers will be created differently than the players laser.
-                Because of this, we will create another function for creating
-                enemy lasers.
+              <dd>Enemy lasers are different than player lasers, so we will need another function to create them
               </dd>
               <dd>Rather than using spacebar and the player position to create the laser,
                 we will use random generation to select an enemy and create a laser
@@ -718,7 +714,7 @@ function destroyEnemy($container, enemy) {
                  <img height=80% src="img/enemy_stuck_laser.PNG">
                </div>
              </div>
-              <dt>4. Update Function</dt>
+              <dt>5. Update Function</dt>
               <dd><i><b>Recall:</b></i> The update function will be called each frame, <b>up to 60 times each second!</b></dd>
               <dd><b>Think of the game as a flip book</b>
                 <li>Each frame is another page in the flipbook</li>
@@ -747,7 +743,7 @@ function destroyEnemy($container, enemy) {
   }
   GAME_STATE.enemyLasers = GAME_STATE.enemyLasers.filter(e => !e.isDead);
 }</code></pre></dd>
-              <dt>5. Progress Check</dt>
+              <dt>6. Progress Check</dt>
               <dd>
                 By now, you should have a fleet of enemy spaceships firing at you!
               </dd>
