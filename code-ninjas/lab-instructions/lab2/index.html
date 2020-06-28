@@ -311,7 +311,7 @@ function rand(min, max) {
 
     <div class="card card-body" id="step2">
       <div class="stepLine">
-        <p class="alignleft h5">2. Creating and Destroying the Player</p>
+        <p class="alignleft h5">2. Creating and the Player</p>
         <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
         <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
         <p class="alignright h5">(<span class="time" id="time2">20</span> Minutes)</p>
@@ -583,7 +583,7 @@ function destroyLaser($container, laser) {
     }
     setPosition(laser.$element, laser.x, laser.y);
   }
-  //Section : Add collision detection here
+  //Section 6.4: Add collision detection here
 
   GAME_STATE.lasers = GAME_STATE.lasers.filter(e => !e.isDead);
 }
@@ -732,14 +732,8 @@ function destroyEnemy($container, enemy) {
       destroyLaser($container, laser);
     }
     setPosition(laser.$element, laser.x, laser.y);
-    const r1 = laser.$element.getBoundingClientRect();
-    const player = document.querySelector(".player");
-    const r2 = player.getBoundingClientRect();
-    if (rectsIntersect(r1, r2)) {
-      // Player was hit
-      destroyPlayer($container, player);
-      break;
-    }
+
+    //6.2: Add collision detection code here
   }
   GAME_STATE.enemyLasers = GAME_STATE.enemyLasers.filter(e => !e.isDead);
 }</code></pre></dd>
@@ -754,6 +748,71 @@ function destroyEnemy($container, enemy) {
     					</dl>
     				</div>
     			</div>
+
+
+          <div class="card card-body" id="step6">
+            <div class="stepLine">
+              <p class="alignleft h5">5. Collision Detection</p>
+              <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(6)" >Mark Complete</button>
+              <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">Expand</button>
+              <p class="alignright h5">(<span class="time" id="time6">16</span> Minutes)</p>
+            </div>
+            <div class="collapse" id="multiCollapseExample6">
+              <dl>
+
+                <dt>1. What is it?</dt>
+                <dd>
+                  <li>In games, collision detection is used to detect when two object collide with eachother</li>
+                  <li>Here, we will detect when a laser collides with the player, and then when a laser collides with an enemy</li>
+                  <li>When we detect a collision, we will destroy the game object that collided with a laser</li>
+                </dd>
+                <dd>Collisions are detected by drawing a hitbox for each object, which represents the area an object takes up</dd>
+                <dd>We then check each frame if the hitboxes intersect, and if they do, we have detected a collision!</dd>
+                <dt>2. Player hit by laser</dt>
+                <dd>First, add this code to the function defintion section. This function will destroy the player and play a sound when called</dd>
+              </dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">function destroyPlayer($container, player) {
+  $container.removeChild(player);
+  GAME_STATE.gameOver = true;
+  const audio = new Audio("https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/sound/sfx-lose.ogg");
+  audio.play();
+}</code></pre></dd>
+                <dd>Now, inside of updateEnemyLasers, lets add this code to check if the laser intersects with the player</dd>
+              </dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">const r1 = laser.$element.getBoundingClientRect();
+const player = document.querySelector(".player");
+const r2 = player.getBoundingClientRect();
+if (rectsIntersect(r1, r2)) {
+  // Player was hit
+  destroyPlayer($container, player);
+  break;
+}</code></pre></dd>
+                <dt>3. Enemy hit by laser</dt>
+                <dd>Earlier, we already defined a function for destroying the enemy</dd>
+                <dd>Now, we only need to call the function when we detect a collision</dd>
+                <dd>Add this code just below the comment inside of updateLasers function</dd>
+              </dd><pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">const r1 = laser.$element.getBoundingClientRect();
+const enemies = GAME_STATE.enemies;
+for (let j = 0; j < enemies.length; j++) {
+  const enemy = enemies[j];
+  if (enemy.isDead) continue;
+  const r2 = enemy.$element.getBoundingClientRect();
+  if (rectsIntersect(r1, r2)) {
+    // Enemy was hit
+    destroyEnemy($container, enemy);
+    destroyLaser($container, laser);
+    break;
+  }
+</code></pre></dd>
+                <dt>5. Game complete</dt>
+                <dd>
+                  Congratulations! You should now have a working space invaders game!
+                </dd>
+                <dd>If you don't, reach out to a sensei for help</dd>
+                <dd>
+                   There is much more that we can add to the game, for now try it out and enjoy
+                </dd>
+                </dl>
+              </div>
+            </div>
 
 		</main><!-- /.container -->
 		<div id="bottom_nav">
