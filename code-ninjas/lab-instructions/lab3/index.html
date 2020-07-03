@@ -161,7 +161,112 @@ p {
             </dd>
             <dt>4. Add in Javascript</dt>
             <dd>
-              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript"></code></pre>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-javascript">const canvas = document.getElementById('game');
+const context = canvas.getContext('2d');
+
+////VARIABLE DECLARATIONS - CONTROLLER////
+const KEY_CODE_LEFT = 37;
+const KEY_CODE_RIGHT = 39;
+const KEY_CODE_UP = 38;
+const KEY_CODE_DOWN = 40;
+
+// controller object here
+
+
+////END VARIABLE DECLARATIONS - CONTROLLER////
+
+
+////START VARIABLE DECLARATIONS - GAME OBJECTS////
+var ID=0;
+const grid = 16;
+var count = 0;
+var score=0;
+var max=0;
+
+// apple object here
+
+
+// 2.1: Snake object here
+
+
+////END VARIABLE DECLARATIONS - GAME OBJECTS////
+
+
+////BEGIN FUNCTION DEFINITIONS - SNAKE & CONTROLLER////
+
+// resetGame(), sets highscore, resets the snake and apple
+
+
+// resetController() clears controller input
+
+
+// snakeHitWall(), wraps snake around canvas whenever it hits the wall
+
+
+// moveSnake(), moves snake based on direction
+
+
+// snakeHitSelf(), ends game whe snake collides with itself
+
+
+// updateSnake(), first moves snake, then draws each cell, while checking for collisions with self or apple
+
+
+////END FUNCTION DEFINITIONS - SNAKE////
+////BEGIN FUNCTION DEFINITIONS - APPLE////
+
+// getRandomInt(), get random whole numbers in a specific range
+// @see https://stackoverflow.com/a/1527820/2124254
+
+
+// updateApple(), draws apple in its specified coordinates
+
+
+// moveApple(), sets new coordinates for the apple
+
+
+// snakeEatApple(), increases score and calls moveApple()
+
+
+////END FUNCTION DEFINITIONS - APPLE////
+
+
+
+//MAIN GAME LOOP
+function update() {
+  ID = requestAnimationFrame(update);
+  // slow game loop to 15 fps instead of 60 (60/15 = 4)
+  if (++count < 4) {
+    return;
+  }
+  count = 0;
+
+  context.clearRect(0,0,canvas.width,canvas.height);
+
+  //add update apple here
+
+  //add update snake here
+
+}
+
+////EVENT LISTENERS
+//onKeyDown() sets controller flags on keypresses
+
+
+//changeDirection() changes direction of snake based on key input
+
+
+//add event listeners to the window here:
+
+
+////END EVENT LISTENERS////
+
+
+// start the game
+function start() {
+    cancelAnimationFrame(ID);
+    ID = requestAnimationFrame(update);
+}</code></pre>
             </dd>
 					</dl>
 				</div>
@@ -171,7 +276,7 @@ p {
 
 			<div class="card card-body" id="step2">
 				<div class="stepLine">
-					<p class="alignleft h5">2. Embedding the Brick Breaker Code</p>
+					<p class="alignleft h5">2. Making the snake</p>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
 					<p class="alignright h5">(<span class="time" id="time2">15</span> Minutes)</p>
@@ -181,239 +286,121 @@ p {
             <h2 style ="text-align: center;">Press (ctrl+s) after EVERY STEP to save.</h2>
           </div></br>
           <dl>
-						<dt>1. In the upper left corner, next to "Untitled", click on the pencil to change the title to "Brick Breaker"</dt></br>
-						<dt>2. <u>The Skeleton:</u> Add the HTML code below to the HTML section to create a canvas </dt>
-            <dd><i>A canvas is used in to draw graphics on a web page.</i></dd>
-						<dd>
-							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-html">&lt;canvas id="myCanvas" width="480" height="320"&gt;&lt;/canvas&gt;</code></pre>
-						</dd>
-						<dt>3. <u>The Skin:</u> Add this code to the CSS section to color the background light gray</dt>
-						<dd>
-							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-css">canvas { background: #eee; }</code></pre>
-						</dd>
-            <dt>4. Now, you get to choose the color of the background for your game!</dt>
+						<dt>1. Create a snake object</dt></br>
+            <dd>First, we will create an object which represents the snake<dd>
+              <dd>This object will hold:</dd>
               <dd>
-                <div class="row">
-                  <div class="col-6">
-                    <ul>
-                      <li><a target="_blank" href="https://www.w3schools.com/colors/colors_picker.asp">Click here</a> to visit our color picker, and pick your favorite.</li>
-                      <li>One you find it, copy (ctrl+c) the <b>hex code</b>.</li>
-                      <li>Return to the CodePen page, and replace "(#eee)" with your new hex color value</br>
-                      <i>Tip: You can highlight "#eee" with the cursor and press (ctrl+v) to quickly do this</i></li>
-                    </ul>
-                  </div>
-                  <div class="col-6">
-                  </br>
-                    <h4>Example Hex Code:</h4>
-                    <figure>
-                      <img src="img/hex.PNG">
-                      <figcaption><b>Hex code is used to represent colors in a way the computer understand</b></figcaption>
-                    </figure>
-                  </div>
-                <div>
-                <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-css">canvas { background: NEW_COLOR_HERE; }</code></pre>
+                <li>The position of the snake, in (x,y) coordinates</li>
+                <li>The velocity of the snake, across the x axis and y axis</li>
+                <li>The cells that the snake occupies</li>
+                <li>The number of cells the snake starts with</li>
               </dd>
-              <dt>5. Press (ctrl+s) to save and see your new background!</dt></br>
-                <figure>
-                  <img src="img/new_canvas.PNG">
-                  <figcaption><b>Make sure you see your color after saving!</b></figcaption>
-                </figure>
-              </dd>
+              <dd> Add this code in section VARIABLE DECLARATIONS - GAME OBJECTS 2.1</dd>
+            <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-js">const SNAKE_MAX_SPEED = 16;
+const STARTING_LENGTH = 4;
 
-						<dt>6. <u>The Motion:</u> Now, add ALL of this JavaScript code to the Javascript section </dt>
+const snake = {
+  // snake posistion
+    x: 160,
+    y: 160,
+
+    // snake velocity. moves one SNAKE_MAX_SPEED length every frame in either the x or y direction
+    dx: SNAKE_MAX_SPEED,
+    dy: 0,
+
+    // keep track of all grids the snake body occupies
+    cells: [],
+
+    //starting length of the snake. grows when eating an apple
+    maxCells: STARTING_LENGTH
+  };
+</code></pre>
+						<dt>2. Making the snake move</dt>
+            <dd>Now that we have an object, we can define how it move in our moveSnake() function</dd>
+            <dd>Add this code in section FUNCTION DEFINITIONS - SNAKE & CONTROLLER 2.2 moveSnake()
 						<dd>
-						 <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">
-////VARIABLES////
-var score = 0;
-var lives = 3;
+							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-js">// moveSnake(), moves snake based on direction
+function moveSnake() {
 
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
+  //changeDirection and reset controller
+  // changeDirection();
+  // resetController();
 
-//Size of ball
-var ballRadius = 10;
+  // move snake by it's velocity
+  snake.x += snake.dx;
+  snake.y += snake.dy;
 
-//Ball posistion
-var x = canvas.width/2;
-var y = canvas.height-30;
+  //2.4 snakeHitWall call here
 
-//Ball speed
-var dx = 2;
-var dy = -2;
-
-//Paddle and movement
-var paddleHeight = 10;
-var paddleWidth = 75;
-var paddleX = (canvas.width-paddleWidth)/2;
-var rightPressed = false; //for event listeners
-var leftPressed = false; //for event listeners
-
-//Brick variables
-var brickRowCount = 5;
-var brickColumnCount = 3;
-var brickWidth = 75;
-var brickHeight = 20;
-var brickPadding = 10;
-var brickOffsetTop = 30;
-var brickOffsetLeft = 30;
-var bricks = [];
-
-for(var c=0; c < brickColumnCount; c++) {
-  bricks[c] = [];
-  for(var r=0; r < brickRowCount; r++) {
-    bricks[c][r] = { x: 0, y: 0, status: 1 };
+  // keep track of where snake has been. front of the array is always the head
+  snake.cells.unshift({x: snake.x, y: snake.y});
+  // remove cells as we move away from them
+  if (snake.cells.length > snake.maxCells) {
+    snake.cells.pop();
   }
-}
-////END VARIABLES////
-
-////EVENT LISTENERS////
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
-// document.addEventListener("mousemove", mouseMoveHandler, false);
-
-function keyDownHandler(e) {
-    if(e.key == "Right" || e.key == "ArrowRight") {
-        rightPressed = true;
-    }
-    else if(e.key == "Left" || e.key == "ArrowLeft") {
-        leftPressed = true;
-    }
-}
-
-function keyUpHandler(e) {
-    if(e.key == "Right" || e.key == "ArrowRight") {
-        rightPressed = false;
-    }
-    else if(e.key == "Left" || e.key == "ArrowLeft") {
-        leftPressed = false;
-    }
-}
-
-function mouseMoveHandler(e) {
-  var relativeX = e.clientX - canvas.offsetLeft;
-  if(relativeX > 0 && relativeX < canvas.width) {
-    paddleX = relativeX - paddleWidth/2;
-  }
-}
-function collisionDetection() {
-  for(var c=0; c < brickColumnCount; c++) {
-    for(var r=0; r < brickRowCount; r++) {
-      var b = bricks[c][r];
-      if(b.status == 1) {
-        if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
-          dy = -dy;
-          b.status = 0;
-          score++;
-          if(score == brickRowCount*brickColumnCount) {
-            alert("YOU WIN, CONGRATS!");
-            document.location.reload();
-          }
-        }
-      }
-    }
-  }
-}
-////END EVENT HANDLERS////
-
-////CANVAS////
-function drawBall() {
-  ctx.beginPath();
-  ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-  ctx.fillStyle = "#0095DD";
-  ctx.fill();
-  ctx.closePath();
-}
-function drawPaddle() {
-  ctx.beginPath();
-  ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = "#0095DD";
-  ctx.fill();
-  ctx.closePath();
-}
-function drawBricks() {
-  for(var c=0; c < brickColumnCount; c++) {
-    for(var r=0; r < brickRowCount; r++) {
-      if(bricks[c][r].status == 1) {
-        var brickX = (r*(brickWidth+brickPadding))+brickOffsetLeft;
-        var brickY = (c*(brickHeight+brickPadding))+brickOffsetTop;
-        bricks[c][r].x = brickX;
-        bricks[c][r].y = brickY;
-        ctx.beginPath();
-        ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "#0095DD";
-        ctx.fill();
-        ctx.closePath();
-      }
-    }
-  }
-}
-function drawScore() {
-  ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
-  ctx.fillText("Score: "+score, 8, 20);
-}
-function drawLives() {
-  ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
-  ctx.fillText("Lives: "+lives, canvas.width-65, 20);
-}
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawBricks();
-  drawBall();
-  drawPaddle();
-  drawScore();
-  drawLives();
-  collisionDetection();
-
-  if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-    dx = -dx;
-  }
-  if(y + dy < ballRadius) {
-    dy = -dy;
-  }
-  else if(y + dy > canvas.height-ballRadius) {
-    if(x > paddleX && x < paddleX + paddleWidth) {
-      dy = -dy;
-    }
-    else {
-      lives--;
-      if(!lives) {
-        alert("GAME OVER");
-        document.location.reload();
-      }
-      else {
-        x = canvas.width/2;
-        y = canvas.height-30;
-        dx = 3;
-        dy = -3;
-        paddleX = (canvas.width-paddleWidth)/2;
-      }
-    }
-  }
-
-  if(rightPressed && paddleX < canvas.width-paddleWidth) {
-    paddleX += 7;
-  }
-  else if(leftPressed && paddleX > 0) {
-    paddleX -= 7;
-  }
-
-  x += dx;
-  y += dy;
-  requestAnimationFrame(draw);
-}
-////END CANVAS////
-
-draw();
-              </code></pre>
+}</code></pre>
 						</dd>
-						<dt>6. The game is ready for playing!</dt>
-						<dd>
-              Make sure you save before moving on.
-						</dd>
+						<dt>3. Beginning the update snake function</dt>
+            <dd> There are many thing we will need to update each frame. To stay organized, we will have a function only to update the snake.</dd>
+            <dd> After, we will call updateSnake() in our overall update function, which is called each frame</dd>
+						<dd>Add this code in section FUNCTION DEFINITIONS - SNAKE & CONTROLLER 2.3 updateSnake()</dd>
+            <dd>
+							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-js">function updateSnake(){
+  moveSnake();
+  // draw snake one cell at a time
+  context.fillStyle = 'green';
+  snake.cells.forEach(function(cell, index) {
 
+    // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
+    context.fillRect(cell.x, cell.y, grid-1, grid-1);
+
+    //add check for snake eating apple
+    // snakeEatApple(cell);
+
+    // check collision with all cells after this one (modified bubble sort)
+    // snakeHitSelf(index, cell)
+  });
+}</code></pre>
+						</dd>
+            <dd>So far, this code calls moveSnake, and then draws each cell of the snake. Later, we will add more</dd>
+            <dt>4. Call it every frame!</dt>
+              <dd> Just like in space invaders, we will add the rules for changes in between frames in  update()</dd>
+              <dd> Inside of update(), at 2.4, call updateSnake();</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-js">updateSnake();</code></pre>
+              <dt>5. Progress check</dt></br>
+              <dd>Now, when you click the screen, a snake should be created and slither off the screen</dd>
+              <dd>Try saving and clicking the game again if you don't</dd>
+              <dd>Otherwise, ask a sesei for help</dd>
+
+						<dt>6. Keeping the snake in bounds, snakeHitWall() definition </dt>
+						<dd>Now, lets add a function that tells the game what to do when the snake hits the wall</dd>
+            <dd>
+              <li>To do this, we will first check if the snake is out of bounds (1.snake.x < 0 or 2. snake.x >= canvas.width)</li>
+              <li>If it is out of bounds, we will move it to the other side of the canvas (1. snake.x = canvas.width - grid or 2. snake.x = 0)</li>
+						 <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function snakeHitWall() {
+    // wrap snake position horizontally on edge of screen
+  if (snake.x < 0) {
+    snake.x = canvas.width - grid;
+  }
+  else if (snake.x >= canvas.width) {
+    snake.x = 0;
+  }
+
+  // wrap snake position vertically on edge of screen
+  if (snake.y < 0) {
+    snake.y = canvas.height - grid;
+  }
+  else if (snake.y >= canvas.height) {
+    snake.y = 0;
+  }
+}</code></pre>
+						</dd>
+						<dt>7. snakeHitWall() call</dt>
+						<dd>Inside of moveSnake(), call snakeHitWall() below comment labelled 2.7</dd>
+            <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">snakeHitWall();</code></pre>
+            <dd>Because moveSnake() is called in updateSnake(), which is called in update(), snakeHitWall will be called each frame!</dd>
+            <dd>Save it and test it out!</dd>
+            <dd><b>By now, you should have a snake that loops around the screen infinetly when you start the game!</b></dd>
 					</dl>
 				</div>
 			</div>
