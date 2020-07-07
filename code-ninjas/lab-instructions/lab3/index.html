@@ -317,14 +317,14 @@ const snake = {
 </code></pre>
 						<dt>2. Making the snake move</dt>
             <dd>Now that we have an object, we can define how it move in our moveSnake() function</dd>
+            <dd>Each update frame, this function will move the snake 1 block in the given direction</dd>
             <dd>Add this code in section FUNCTION DEFINITIONS - SNAKE & CONTROLLER 2.2 moveSnake()
 						<dd>
 							<pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code  class="language-js">// moveSnake(), moves snake based on direction
 function moveSnake() {
 
   //changeDirection and reset controller
-  // changeDirection();
-  // resetController();
+  // 3.4 changeDirection();
 
   // move snake by it's velocity
   snake.x += snake.dx;
@@ -407,33 +407,168 @@ function moveSnake() {
 
 			<div class="card card-body" id="step3">
 				<div class="stepLine">
-					<p class="alignleft h5">3. Lets try it out!</p>
+					<p class="alignleft h5">3. Controlling the Snake</p>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
 					<p class="alignright h5">(<span class="time" id="time3">15</span> Minutes)</p>
 				</div>
 				<div class="collapse" id="multiCollapseExample3">
 					<dl>
-						<dt>1. Try out the game</dt>
-						<dd>
+						<dt>1. The Controller object</dt>
+						<dd> The controller is used to help read user input</dd>
               <ul>
-  							<li>Take a break from all the hard work, and try out the game</li>
-                <li>As you play, see if you can think of ways the game can be better</li>
-                <li>Or, try thinking of problems with the game, and what can be done to make it better</li>
+  							<li>First, we will declare an controller object where we will store whcich arrow keys are pressed</li>
+                <li>Then, we can add an event listener that update which keys are pressed whenever a keypress event happens</li>
+                <li>Lastly, we will create a function that modifies the direction the snake object is moving in based on a key press</li>
               </ul>
-              <div class="form-group">
-                <label for="notes"><i>Aim for atleast 5 ideas...</i><b>Get Creative!</b></label>
-                <textarea class="form-control rounded-0" id="notes" rows="10"></textarea>
-              </div>
-						</dd>
-						<dt>2. Brain Storm</dt>
-						<dd>
-              Share your ideas from the last step with your Sensei!</br>
-              <i>-Next, we will be implementing these mods into the game</i>
-						</dd>
+              <dd>Near the top of your code, add in the Controller Object Declartion in VARIABLE DECLARATIONS - CONTROLLER</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">const controller = {
+  leftPressed: false,
+  rightPressed: false,
+  upPressed: false,
+  downPressed: false,
+};</code></pre>
+            <dd>In the object, we have a true/false (boolean) variable for if each key is pressed. These are also known as flags.<dd>
+
+              <dt>2. "Keydown" Event Listener</dt>
+              <dd>We want to change the key flags whenever a key is pressed, so we will need to add an "keydown" event listener.</dd>
+              <dd>This event listener will call our onKeyDown() function, which we will define next to actually set the flags based on the key pressed</dd>
+              <dd>Add this code to the EVENT LISTENERS section of the code, just under the comment marked 3.2</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">window.addEventListener("keydown", onKeyDown);</code></pre>
+              <dd>Now whenever we press a key, onKeyDown will be called</dd>
+
+              <dt>3. onKeyDown(e), Setting the flags</dt>
+              <dd>Let's now define what onKeyDown does</dd>
+              <dd>Add the definition in EVENT LISTENERS - 3.3<dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function onKeyDown(e) {
+  if (e.keyCode === KEY_CODE_LEFT && snake.dx === 0) {
+    controller.leftPressed = true;
+  } else if (e.keyCode === KEY_CODE_RIGHT && snake.dx === 0) {
+    controller.rightPressed = true;
+  } else if (e.keyCode === KEY_CODE_UP && snake.dy === 0) {
+    controller.upPressed = true;
+  } else if (e.keyCode === KEY_CODE_DOWN && snake.dy === 0) {
+    controller.downPressed = true;
+  }
+}</code></pre>
+              <dd>This function checks which key is pressed based on the keycode, and sets the controller flags if and only if the snake isn't already moving in the direction pressed.</dd>
+
+              <dt>4. Changing the Snake Direction</dt>
+              <dd>We now have data in the controller object with flags that tell us what arrow key the user pressed</dd>
+              <dd>In the changeDirection() function, we will set the direction of the snake based on these flags</dd>
+              <dd>Add this code to the
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function changeDirection(){
+  if (controller.leftPressed) {
+    snake.dx = -SNAKE_MAX_SPEED;
+    snake.dy = 0;
+  }
+  else if (controller.rightPressed) {
+    snake.dx = SNAKE_MAX_SPEED;
+    snake.dy = 0;
+  }
+  else if (controller.upPressed) {
+    snake.dx = 0;
+    snake.dy = -SNAKE_MAX_SPEED;
+  }
+  else if (controller.downPressed) {
+    snake.dx = 0;
+    snake.dy = SNAKE_MAX_SPEED;
+  }
+  resetController();
+}
+
+// resetController() clears controller flags
+function resetController(){
+  controller.leftPressed= false;
+  controller.rightPressed= false;
+  controller.upPressed= false;
+  controller.downPressed= false;
+}</code></pre>
+              <dd>Notice at the end we added a function for resetting the controller flags, so after the snake direction is set the user input is cleared.</dd>
+              <dd>Now that we have defined the change direction function, we need to call it</dd>
+              <dd>Since the direction of the snake can change each time it moves, we will call changeDirection in the moveSnake() function.</dd>
+              <dd>Add the changeDirection call inside of the moveSnake() function.</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">  changeDirection();</code></pre>
+              <dd><b>After saving, you should have a snake that you can move with the arrow keys</b></dd>
+              <dd>Next, we will add in an apple, as well as a scoring system</dd>
 					</dl>
 				</div>
 			</div>
+
+
+
+      <div class="card card-body" id="step4">
+        <div class="stepLine">
+          <p class="alignleft h5">4. Apples and Points</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)" >Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time3">15</span> Minutes)</p>
+        </div>
+        <div class="collapse" id="multiCollapseExample3">
+          <dl>
+            <dt>1. The Apple Object</dt>
+            <dd> The apple will be the objective in our game</dd>
+              <ul>
+                <li>We will create the apple in a random location at the start of the game</li>
+                <li>When the snake eats the apple, it will grow, making the game harder. The player will also get points</li>
+                <li>Lastly, a new apple will be created in a new random location</li>
+              </ul>
+              <dd>The only data we need to store in the apple object are the x and y coordinated</dd>
+              <dd>Add the object declaration to START VARIABLE DECLARATIONS - GAME OBJECTS 4.1
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">const apple = {
+  x: 320,
+  y: 320
+};</code></pre>
+
+              <dt>2. Drawing the apple</dt>
+              <dd>Each frame, we need to tell the computer to draw the apple</dd>
+              <dd>Add this updateApple() function defintion in FUNCTION DEFINITIONS - APPLE 4.2</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function updateApple(){
+  context.clearRect(0,0,canvas.width,canvas.height);
+  context.fillStyle = 'red';
+  context.fillRect(apple.x, apple.y, grid-1, grid-1);
+  // 4.5 snake eat apple condition
+}</code></pre>
+              <dd>Now, call it every frame inside of the update() function MAIN GAME LOOP - 4.2</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">updateApple();</code></pre>
+              <dd>You should now see an apple drawn in the game. Now, lets make it so the snake can interact with it</dd>
+
+              <dt>3. moveApple</dt>
+              <dd>We will create moveApple to generate new x and y coordinates for the apple.<dd>
+              <dd>Each time the snake eats the apple, we can call move apple to move  it to a new random location</dd>
+              <dd>First Define move apple in FUNCTION DEFINITIONS - APPLE 4.3</dd>
+              <dd>Note this code also include a definition for getting random numbers within a range</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function moveApple() {
+  // canvas is 800x800 which is 50x50 grids
+  apple.x = getRandomInt(0, 50) * grid;
+  apple.y = getRandomInt(0, 50) * grid;
+}
+// get random whole numbers in a specific range https://stackoverflow.com/a/1527820/2124254
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+</code></pre>
+              <dt>4. snakeEatApple() Definition</dt>
+              <dd>Now we can put together everything that happens when a snake eats an apple in the snakeEatApple() function definition</dd>
+              <dd>In snakeEatApple(), we increment the length of the snake, increment the score, add the score to the HTML, and move the apple</dd>
+              <dd>Add the definition  FUNCTION DEFINITIONS - APPLE 4.4
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function snakeEatApple() {
+  snake.maxCells+=5;
+  score+=5;
+  document.getElementById('score').innerHTML=score;
+  moveApple();
+}</code></pre>
+              <dd>Now we just need to call it to make our apples edible</dd>
+              <dt>5. snakeEatApple Call</dd>
+              <dd>We need to check each frame if the snake head is on the apple</dd>
+              <dd>updateApple() is called evey frame, so we check if the snake is on the apple, and call snakeEatApple() if it is</dd>
+              <dd>Add this condition inside of updateApple 4.5 in FUNCTION DEFINITIONS - APPLE
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">  changeDirection();</code></pre>
+              <dd><b>After saving, you should have a snake that you can move with the arrow keys</b></dd>
+              <dd>Next, we will add in an apple, as well as a scoring system</dd>
+          </dl>
+        </div>
+      </div>
 
 		</main><!-- /.container -->
 		<div id="bottom_nav">
