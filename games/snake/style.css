@@ -1,0 +1,49 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  border: 1px solid white;
+  background-color:white;
+}
+
+p {
+font-size: 20px;
+font-family: "Lucida Console", Courier, monospace;
+}
+
+.container-fluid {
+background-color: lightgrey;
+}
+.row {
+justify-content: center;
+}
+
+.container {
+background-color: white;
+}
+
+#score-txt
+{
+  color:red;
+  align-text:center;
+}
+  #high-txt
+{
+  color:red;
+}
+#score
+{
+  color:black;
+}
+#high
+{
+  color:blue;
+}
