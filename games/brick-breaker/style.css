@@ -1,5 +1,3 @@
-canvas { background: #eef; }
-
 html, body {
   height: 100%;
   margin: 0;
@@ -30,22 +28,4 @@ justify-content: center;
 
 .container {
 background-color: white;
-}
-
-#score-txt
-{
-  color:red;
-  align-text:center;
-}
-  #high-txt
-{
-  color:red;
-}
-#score
-{
-  color:black;
-}
-#high
-{
-  color:blue;
 }

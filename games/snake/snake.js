@@ -182,12 +182,24 @@ function updateSnake(){
 
 ////BEGIN FUNCTION DEFINITIONS - APPLE////
 
-
+//7/8/2020 UPDATE
 function moveApple() {
-  // canvas is 800x800 which is 50x50 grids
-  apple.x = getRandomInt(0, 50) * grid;
-  apple.y = getRandomInt(0, 50) * grid;
+  var found = false;
+  while (found == true){
+    // canvas is 800x800 which is 50x50 grids
+    apple.x = getRandomInt(0, 50) * grid;
+    apple.y = getRandomInt(0, 50) * grid;
+
+
+    for(var i = 0; i < snake.cells.length; i++) {
+      if (snake.cells[i].x == apple.x && snake.cells[i].y == apple.y) {
+          found = true;
+          break;
+      }
+    }
+  }
 }
+
 // get random whole numbers in a specific range https://stackoverflow.com/a/1527820/2124254
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
