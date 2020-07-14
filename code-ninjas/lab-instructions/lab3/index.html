@@ -537,11 +537,21 @@ function resetController(){
               <dd>We will create moveApple to generate new x and y coordinates for the apple.<dd>
               <dd>Each time the snake eats the apple, we can call move apple to move  it to a new random location</dd>
               <dd>First Define move apple in FUNCTION DEFINITIONS - APPLE 4.3</dd>
+              <dd>The do {...}while loop generates new coordinates for the apple if its inside of the snake</dd>
               <dd>Note this code also include a definition for getting random numbers within a range</dd>
               <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function moveApple() {
-  // canvas is 800x800 which is 50x50 grids
-  apple.x = getRandomInt(0, 50) * grid;
-  apple.y = getRandomInt(0, 50) * grid;
+                do { //make new apple coordinates while its in the snake
+                  // get random number in canvas. 800x800 which is 50x50 grids
+                  apple.x = getRandomInt(0, 50) * grid;
+                  apple.y = getRandomInt(0, 50) * grid;
+
+
+                  for(var i = 0; i < snake.cells.length; i++) {
+                    if (snake.cells[i].x == apple.x && snake.cells[i].y == apple.y) {
+                        inSnake = true;
+                    }
+                  }
+                } while (inSnake == true)
 }
 // get random whole numbers in a specific range https://stackoverflow.com/a/1527820/2124254
 function getRandomInt(min, max) {
