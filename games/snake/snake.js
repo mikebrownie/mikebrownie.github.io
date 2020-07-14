@@ -182,10 +182,10 @@ function updateSnake(){
 
 ////BEGIN FUNCTION DEFINITIONS - APPLE////
 
-//7/8/2020 UPDATE
+//NOW 7/14/2020 update 7/8/2020 UPDATE
 function moveApple() {
-  var found = false;
-  while (found == true){
+  var inSnake = false;
+  do { //make new apple coordinates while its in the snake
     // canvas is 800x800 which is 50x50 grids
     apple.x = getRandomInt(0, 50) * grid;
     apple.y = getRandomInt(0, 50) * grid;
@@ -193,11 +193,10 @@ function moveApple() {
 
     for(var i = 0; i < snake.cells.length; i++) {
       if (snake.cells[i].x == apple.x && snake.cells[i].y == apple.y) {
-          found = true;
-          break;
+          inSnake = true;
       }
     }
-  }
+  } while (inSnake == true)
 }
 
 // get random whole numbers in a specific range https://stackoverflow.com/a/1527820/2124254
