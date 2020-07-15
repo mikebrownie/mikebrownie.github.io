@@ -559,7 +559,7 @@ function getRandomInt(min, max) {
 }</code></pre>
               <dt>4. snakeEatApple() Definition</dt>
               <dd>Now we can put together everything that happens when a snake eats an apple in the snakeEatApple() function definition</dd>
-              <dd>In snakeEatApple(), we increment the length of the snake, increment the score, add the score to the HTML, and move the apple</dd>
+              <dd>In snakeEatApple(), we increment the length of the snake, increment the score variable, add the score to the HTML, and move the apple</dd>
               <dd>Add the definition  FUNCTION DEFINITIONS - APPLE 4.4
               <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function snakeEatApple() {
   snake.maxCells+=5;
@@ -572,9 +572,96 @@ function getRandomInt(min, max) {
               <dd>We need to check each frame if the snake head is on the apple</dd>
               <dd>updateApple() is called evey frame, so we check if the snake is on the apple, and call snakeEatApple() if it is</dd>
               <dd>Add this condition inside of updateApple 4.5 in FUNCTION DEFINITIONS - APPLE
-              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">  changeDirection();</code></pre>
-              <dd><b>After saving, you should have a snake that you can move with the arrow keys</b></dd>
-              <dd>Next, we will add in an apple, as well as a scoring system</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">    if (snake.x === apple.x && snake.y === apple.y) {
+    snakeEatApple();
+  }</code></pre>
+              <dd><b>After saving, you should be able to eat apples. A new one should pop up whenever you eat one</b></dd>
+              <dd>Check with your sensei before moving on</dd>
+          </dl>
+        </div>
+      </div>
+
+
+      <div class="card card-body" id="step5">
+        <div class="stepLine">
+          <p class="alignleft h5">5. Snake Eats itself</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)" >Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time3">15</span> Minutes)</p>
+        </div>
+        <div class="collapse" id="multiCollapseExample3">
+          <dl>
+            <dt>1. SnakeHitSelf() function definition</dt>
+            <dd> The apple will be the objective in our game</dd>
+              <ul>
+                <li>We will create the apple in a random location at the start of the game</li>
+                <li>When the snake eats the apple, it will grow, making the game harder. The player will also get points</li>
+                <li>Lastly, a new apple will be created in a new random location</li>
+              </ul>
+              <dd>The only data we need to store in the apple object are the x and y coordinated</dd>
+              <dd>Add the object declaration to START VARIABLE DECLARATIONS - GAME OBJECTS 4.1
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">const apple = {
+  x: 320,
+  y: 320
+};</code></pre>
+
+              <dt>2. Drawing the apple</dt>
+              <dd>Each frame, we need to tell the computer to draw the apple</dd>
+              <dd>Add this updateApple() function defintion in FUNCTION DEFINITIONS - APPLE 4.2</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function updateApple(){
+  context.clearRect(0,0,canvas.width,canvas.height);
+  context.fillStyle = 'red';
+  context.fillRect(apple.x, apple.y, grid-1, grid-1);
+  // 4.5 snake eat apple condition
+}</code></pre>
+              <dd>Now, call it every frame inside of the update() function MAIN GAME LOOP - 4.2</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">updateApple();</code></pre>
+              <dd>You should now see an apple drawn in the game. Now, lets make it so the snake can interact with it</dd>
+
+              <dt>3. moveApple</dt>
+              <dd>We will create moveApple to generate new x and y coordinates for the apple.<dd>
+              <dd>Each time the snake eats the apple, we can call move apple to move  it to a new random location</dd>
+              <dd>First Define move apple in FUNCTION DEFINITIONS - APPLE 4.3</dd>
+              <dd>The do {...}while loop generates new coordinates for the apple if its inside of the snake</dd>
+              <dd>Note this code also include a definition for getting random numbers within a range</dd>
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function moveApple() {
+                do { //make new apple coordinates while its in the snake
+                  // get random number in canvas. 800x800 which is 50x50 grids
+                  apple.x = getRandomInt(0, 50) * grid;
+                  apple.y = getRandomInt(0, 50) * grid;
+
+
+                  for(var i = 0; i < snake.cells.length; i++) {
+                    if (snake.cells[i].x == apple.x && snake.cells[i].y == apple.y) {
+                        inSnake = true;
+                    }
+                  }
+                } while (inSnake == true)
+}
+// get random whole numbers in a specific range https://stackoverflow.com/a/1527820/2124254
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}</code></pre>
+              <dt>4. snakeEatApple() Definition</dt>
+              <dd>Now we can put together everything that happens when a snake eats an apple in the snakeEatApple() function definition</dd>
+              <dd>In snakeEatApple(), we increment the length of the snake, increment the score variable, add the score to the HTML, and move the apple</dd>
+              <dd>Add the definition  FUNCTION DEFINITIONS - APPLE 4.4
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function snakeEatApple() {
+  snake.maxCells+=5;
+  score+=5;
+  document.getElementById('score').innerHTML=score;
+  moveApple();
+}</code></pre>
+              <dd>Now we just need to call it to make our apples edible</dd>
+              <dt>5. snakeEatApple Call</dd>
+              <dd>We need to check each frame if the snake head is on the apple</dd>
+              <dd>updateApple() is called evey frame, so we check if the snake is on the apple, and call snakeEatApple() if it is</dd>
+              <dd>Add this condition inside of updateApple 4.5 in FUNCTION DEFINITIONS - APPLE
+              <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">    if (snake.x === apple.x && snake.y === apple.y) {
+    snakeEatApple();
+  }</code></pre>
+              <dd><b>After saving, you should be able to eat apples. A new one should pop up whenever you eat one</b></dd>
+              <dd>Check with your sensei before moving on</dd>
           </dl>
         </div>
       </div>
