@@ -228,7 +228,7 @@
   update();
 </code></pre>
 						</dd>
-						<dt>6. The game is ready for playing!</dt>
+						<dt>6. We have built a canvas that we will draw on to create the game!</dt>
 						<dd>
               Make sure you save before moving on.
 						</dd>
@@ -249,8 +249,8 @@
             <dt>1. Paddle variables</dt>
             <dd>
               <ul>
-                <li>We will need to define some variables like posistion and size of the paddle</li>
-                <li>Then, we will add <b>Event Listeners</b> to take keyboard input and modify the posistion of the paddle</li>
+                <li>We will need to define some variables, like posistion and size of the paddle</li>
+                <li>Then, we will add <b>Event Listeners</b> to listen for keyboard input and modify the posistion of the paddle based on the input</li>
               </ul>
             </dd>
             <dd>First, lets define the size and posistion of the paddle</dd>
@@ -276,11 +276,11 @@ var paddleX = (canvas.width-paddleWidth)/2;</code></pre>
           <dd>So far, we have only defined the function for drawing the paddle, but we haven't told the computer to execute it</dd>
           <dd>By adding a function call inside of update, we can tell the computer to draw it each frame</dd>
           <dd>Add this function call inside of update() near the bottom of the code, labeled 3.2 drawPaddle(); call</dd>
-          <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">function drawPaddle();</code></pre>
+          <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">drawPaddle();</code></pre>
           <dd>After hitting save and run, you should see a small blue rectange at the bottom of your canvas</dd>
 
           <dt>4. Event Listeners</dt>
-          <dd>Now, we have a paddle. We will now add event listeners to take keyboard input and after make it move!</dd>
+          <dd>Now, we have a static paddle. We will now add event listeners to take keyboard input and after make it move!</dd>
           <dd>First, lets create a controller object to hold the state of the keys. we only need to move the padde left or right, so we will have a true/false variable for leftkey pressed and right key presssed.</dd>
           <dd>Add this code in the event listener section, 3.4.1 controller object declaration
           <pre class="command-line" data-user="CodeNinja" data-host="CodePen"><code class="language-javascript">var controller = {
