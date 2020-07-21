@@ -148,7 +148,7 @@
   .game {
     width: 800px;
     height: 600px;
-    background: url(https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/background-blue.PNG);
+    background: url(https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/background-blue.png);
     animation: scroll-background 5s linear infinite;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -328,7 +328,7 @@ function rand(min, max) {
 GAME_STATE.playerX = GAME_WIDTH / 2;
 GAME_STATE.playerY = GAME_HEIGHT - 50;
 const $player = document.createElement("img");
-$player.src = "https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/player-blue-1.PNG";
+$player.src = "https://mikebrownie.github.io/code-ninjas/lab-instructions/lab2/assets/img/player-blue-1.png";
 $player.className = "player";
 $container.appendChild($player);
 setPosition($player, GAME_STATE.playerX, GAME_STATE.playerY);
@@ -752,7 +752,7 @@ function destroyEnemy($container, enemy) {
 
           <div class="card card-body" id="step6">
             <div class="stepLine">
-              <p class="alignleft h5">5. Collision Detection</p>
+              <p class="alignleft h5">6. Collision Detection</p>
               <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(6)" >Mark Complete</button>
               <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">Expand</button>
               <p class="alignright h5">(<span class="time" id="time6">16</span> Minutes)</p>
