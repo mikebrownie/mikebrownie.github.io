@@ -582,9 +582,9 @@ function destroyLaser($container, laser) {
       destroyLaser($container, laser);
     }
     setPosition(laser.$element, laser.x, laser.y);
-  }
-  //Section 6.4: Add collision detection here
+    //Section 6.4: Add collision detection here
 
+  }
   GAME_STATE.lasers = GAME_STATE.lasers.filter(e => !e.isDead);
 }
 
@@ -801,6 +801,7 @@ for (let j = 0; j < enemies.length; j++) {
     destroyLaser($container, laser);
     break;
   }
+}
 </code></pre></dd>
                 <dt>5. Game complete</dt>
                 <dd>
